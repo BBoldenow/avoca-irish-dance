@@ -67,7 +67,7 @@ export default function Navbar() {
                     <Link
                         to="/"
                         className="flex items-center gap-2 group focus-visible:outline-accent"
-                        aria-label="Avoca Irish Dance — home"
+                        aria-label="AVOCA Irish Dance Academy"
                     >
                         <div className="flex flex-col leading-none">
                             <span
@@ -137,7 +137,7 @@ export default function Navbar() {
                             style={{ boxShadow: 'none', transition: 'background 0.2s, box-shadow 0.2s' }}
                             onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(201,168,76,0.35)'}
                             onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-                            aria-label="Sign up for a free Irish dance class trial"
+                            aria-label="Try a Free Class"
                         >
                             Try a Free Class
                         </a>

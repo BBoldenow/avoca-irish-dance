@@ -111,14 +111,13 @@ export default function Home() {
             >
                 {/* Background image with parallax */}
                 <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-                    <div
-                        className="hero-bg-layer w-full h-[115%] -top-[7.5%] relative"
-                        style={{
-                            backgroundImage: `url(${heroBg})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            opacity: 0.45,
-                        }}
+                    <img
+                        src={heroBg}
+                        alt=""
+                        fetchpriority="high"
+                        decoding="async"
+                        className="hero-bg-layer w-full h-[115%] -top-[7.5%] relative object-cover object-center"
+                        style={{ opacity: 0.45 }}
                     />
                 </div>
                 {/* Layered overlays for depth */}
@@ -177,7 +176,7 @@ export default function Home() {
                             style={{ background: 'var(--color-accent)', color: 'var(--color-bg)' }}
                             onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 0 24px rgba(201,168,76,0.4)' }}
                             onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-accent)'; e.currentTarget.style.boxShadow = 'none' }}
-                            aria-label="Sign up to try an Irish dance class for free"
+                            aria-label="Try a Free Class"
                         >
                             Try a Free Class
                             <ChevronRight size={15} aria-hidden="true" />
@@ -188,7 +187,7 @@ export default function Home() {
                             style={{ borderColor: 'rgba(245,239,230,0.35)', color: 'var(--color-text)' }}
                             onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-accent)'; e.currentTarget.style.color = 'var(--color-accent-light)' }}
                             onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,239,230,0.35)'; e.currentTarget.style.color = 'var(--color-text)' }}
-                            aria-label="View the class schedule"
+                            aria-label="View Schedule"
                         >
                             View Schedule
 

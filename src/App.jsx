@@ -40,7 +40,7 @@ function PageFallback() {
 
 export default function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
             <ScrollToTop />
             <Navbar />
             <main id="main-content">
@@ -54,6 +54,7 @@ export default function App() {
                         <Route path="/gallery" element={<Gallery />} />
                         <Route path="/feis" element={<Feis />} />
                         <Route path="/contact" element={<Contact />} />
+                        <Route path="*" element={<Home />} />
                     </Routes>
                 </Suspense>
             </main>

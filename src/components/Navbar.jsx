@@ -67,7 +67,7 @@ export default function Navbar() {
                     <Link
                         to="/"
                         className="flex items-center gap-2 group focus-visible:outline-accent"
-                        aria-label="AVOCA Irish Dance Academy"
+                        aria-label="AVOCA&#10;IRISH DANCE ACADEMY"
                     >
                         <div className="flex flex-col leading-none">
                             <span

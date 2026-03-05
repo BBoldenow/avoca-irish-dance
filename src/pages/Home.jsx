@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import heroBg from '../assets/images/hero-bg.png'
+import heroBg from '../assets/images/hero-bg.webp'
 import { useMeta } from '../hooks/useMeta.js'
 import { ChevronRight, Star, Heart } from 'lucide-react'
 

@@ -4,7 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import heroBg from '../assets/images/hero-bg.png'
 import { useMeta } from '../hooks/useMeta.js'
-import { ChevronRight, Star, Heart, Users } from 'lucide-react'
+import { ChevronRight, Star, Heart } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -57,6 +57,18 @@ export default function Home() {
                     { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
                     '-=0.3'
                 )
+
+            // Subtle parallax on hero background
+            gsap.to('.hero-bg-layer', {
+                y: '15%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: heroRef.current,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            })
         }, heroRef)
 
         // Why dance section
@@ -94,82 +106,92 @@ export default function Home() {
             {/* ── Hero ── */}
             <section
                 ref={heroRef}
-                className="relative min-h-screen flex items-center justify-center overflow-hidden"
+                className="relative min-h-screen flex items-end overflow-hidden"
                 aria-label="Welcome to Avoca Irish Dance Academy"
             >
-                {/* Background image */}
-                <div
-                    className="absolute inset-0"
-                    style={{
-                        backgroundImage: `url(${heroBg})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        opacity: 0.4,
-                    }}
-                    aria-hidden="true"
-                />
-                {/* Decorative orb */}
-                <div
-                    className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 pointer-events-none"
-                    style={{ background: 'radial-gradient(circle, #2d6a4f 0%, transparent 70%)' }}
-                    aria-hidden="true"
-                />
-                <div
-                    className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-15 pointer-events-none"
-                    style={{ background: 'radial-gradient(circle, #c9a84c 0%, transparent 70%)' }}
-                    aria-hidden="true"
-                />
-
-                {/* Content */}
-                <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                    <div className="hero-badge inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full text-xs font-semibold tracking-widest uppercase font-body"
-                        style={{ background: 'rgba(201,168,76,0.12)', border: '1px solid rgba(201,168,76,0.3)', color: 'var(--color-accent)' }}>
-                        <Star size={12} aria-hidden="true" />
-                        Longmont, Colorado
-                        <Star size={12} aria-hidden="true" />
-                    </div>
-
-                    <h1
-                        className="hero-title font-display font-light leading-tight mb-6"
+                {/* Background image with parallax */}
+                <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+                    <div
+                        className="hero-bg-layer w-full h-[115%] -top-[7.5%] relative"
                         style={{
-                            fontSize: 'clamp(3rem, 8vw, 6rem)',
-                            color: 'var(--color-text)',
+                            backgroundImage: `url(${heroBg})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            opacity: 0.45,
                         }}
+                    />
+                </div>
+                {/* Layered overlays for depth */}
+                <div className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.1) 100%)' }}
+                    aria-hidden="true" />
+                <div className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.6) 0%, transparent 70%)' }}
+                    aria-hidden="true" />
+                {/* Hard bottom vignette */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                    style={{ background: 'linear-gradient(to top, rgba(10,10,10,1) 0%, transparent 100%)' }}
+                    aria-hidden="true" />
+
+                {/* Content — bottom-left like Connolly */}
+                <div className="relative z-10 px-6 md:px-12 lg:px-24 pb-24 md:pb-32 max-w-4xl">
+                    <p
+                        className="hero-badge font-body text-xs uppercase tracking-[0.4em] mb-4"
+                        style={{ color: 'var(--color-accent)', textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
                     >
-                        Welcome to{' '}
-                        <span className="gradient-text block sm:inline">Avoca</span>
-                        <span className="block text-lg sm:text-2xl font-body font-light tracking-[0.3em] uppercase mt-2"
-                            style={{ color: 'var(--color-text-muted)' }}>
-                            Irish Dance Academy
+                        Longmont, Colorado
+                    </p>
+
+                    <h1 className="hero-title font-display font-light leading-none mb-2">
+                        <span
+                            className="block text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight"
+                            style={{ color: 'var(--color-text)', textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+                        >
+                            Avoca
+                        </span>
+                        <span
+                            className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight italic"
+                            style={{ color: 'var(--color-accent-light)', textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}
+                        >
+                            Irish Dance
                         </span>
                     </h1>
 
+                    <div className="hero-sub mt-8 mb-6 w-24 h-px" style={{ background: 'var(--color-accent)' }} />
+
                     <p
-                        className="hero-sub text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl mx-auto font-body"
-                        style={{ color: 'var(--color-text-muted)' }}
+                        className="hero-sub font-body font-light max-w-md leading-relaxed tracking-wide"
+                        style={{ color: 'rgba(245,239,230,0.85)', textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
                     >
-                        Your dancer's safe space and home away from home. We are invested in all our students — creating{' '}
-                        <em style={{ color: 'var(--color-accent-light)' }}>excellent dancers</em> and{' '}
-                        <em style={{ color: 'var(--color-accent-light)' }}>excellent humans</em>.
+                        Your dancer's safe space and home away from home — creating{' '}
+                        <em style={{ color: 'var(--color-accent-light)', fontStyle: 'normal' }}>excellent dancers</em> and{' '}
+                        <em style={{ color: 'var(--color-accent-light)', fontStyle: 'normal' }}>excellent humans</em>.
                     </p>
 
-                    <div className="hero-ctas flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="hero-ctas flex flex-col sm:flex-row gap-4 mt-10">
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLSdwHgYmBAiEpIEYMQETjLNLyoGOZvk_SUsQn_iL70zVVFS7DQ/viewform?usp=sf_link"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-primary text-base px-8 py-3"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 font-body font-medium text-xs uppercase tracking-[0.2em] transition-all duration-300"
+                            style={{ background: 'var(--color-accent)', color: 'var(--color-bg)' }}
+                            onMouseEnter={e => { e.currentTarget.style.background = 'var(--color-accent-light)'; e.currentTarget.style.boxShadow = '0 0 24px rgba(201,168,76,0.4)' }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'var(--color-accent)'; e.currentTarget.style.boxShadow = 'none' }}
                             aria-label="Sign up to try an Irish dance class for free"
                         >
                             Try a Free Class
-                            <ChevronRight size={18} aria-hidden="true" />
+                            <ChevronRight size={15} aria-hidden="true" />
                         </a>
                         <Link
                             to="/class-schedule"
-                            className="btn-outline text-base px-8 py-3"
+                            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 border font-body font-light text-xs uppercase tracking-[0.2em] transition-all duration-300"
+                            style={{ borderColor: 'rgba(245,239,230,0.35)', color: 'var(--color-text)' }}
+                            onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-accent)'; e.currentTarget.style.color = 'var(--color-accent-light)' }}
+                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,239,230,0.35)'; e.currentTarget.style.color = 'var(--color-text)' }}
                             aria-label="View the class schedule"
                         >
                             View Schedule
+
                         </Link>
                     </div>
                 </div>
@@ -255,36 +277,78 @@ export default function Home() {
             <section
                 ref={sisterRef}
                 aria-labelledby="sister-heading"
-                style={{ background: 'var(--color-surface)' }}
+                className="relative overflow-hidden"
+                style={{ borderTop: '1px solid rgba(201,168,76,0.1)', borderBottom: '1px solid rgba(201,168,76,0.1)' }}
             >
-                <div className="section-pad max-w-4xl mx-auto text-center sister-content">
-                    <div className="flex items-center justify-center gap-3 mb-6">
-                        <Users size={24} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                        <span className="text-xs font-semibold tracking-widest uppercase font-body"
-                            style={{ color: 'var(--color-accent)' }}>
-                            Partnership Announcement
-                        </span>
+                {/* Layered background */}
+                <div className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #0f1108 100%)' }} />
+                <div className="absolute inset-0 pointer-events-none"
+                    style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%)' }} />
+                <div className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+                    style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent)' }} />
+                <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
+                    style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent)' }} />
+
+                <div className="relative z-10 section-pad max-w-7xl mx-auto">
+                    <div className="sister-content grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
+
+                        {/* Stat pillars */}
+                        <div className="lg:col-span-2 grid grid-cols-2 gap-px" style={{ background: 'rgba(201,168,76,0.1)' }}>
+                            {[
+                                { value: '28+', label: 'Years Combined\nExperience' },
+                                { value: '2', label: 'ADCRG\nCertified Schools' },
+                                { value: 'CO', label: 'Colorado Front\nRange Coverage' },
+                                { value: '∞', label: 'Passion for\nIrish Dance' },
+                            ].map(({ value, label }) => (
+                                <div key={value} className="flex flex-col items-center justify-center p-8 text-center"
+                                    style={{ background: 'rgba(14,14,14,0.7)' }}>
+                                    <span className="font-display text-4xl md:text-5xl font-light mb-2" style={{ color: 'var(--color-accent)' }}>{value}</span>
+                                    <span className="font-body text-center whitespace-pre-line leading-relaxed"
+                                        style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(245,239,230,0.4)' }}>
+                                        {label}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Content */}
+                        <div className="lg:col-span-3 text-center lg:text-left">
+                            <div className="inline-flex items-center gap-2.5 mb-6">
+                                <div className="w-4 h-px" style={{ background: 'rgba(201,168,76,0.5)' }} />
+                                <span className="font-body" style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.35em', color: 'var(--color-accent)' }}>
+                                    Partnership Announcement
+                                </span>
+                                <div className="w-4 h-px" style={{ background: 'rgba(201,168,76,0.5)' }} />
+                            </div>
+
+                            <h2 id="sister-heading" className="font-display text-3xl sm:text-4xl lg:text-5xl font-light mb-6"
+                                style={{ color: 'var(--color-text)', lineHeight: 1.2 }}>
+                                Avoca is Sister Schools with{' '}
+                                <span className="gradient-text">Connolly Irish Dance</span>
+                            </h2>
+
+                            <p className="text-sm md:text-base leading-relaxed mb-8 font-body max-w-2xl lg:max-w-none"
+                                style={{ color: 'var(--color-text-muted)', fontWeight: 300 }}>
+                                We are thrilled about the association between the Avoca Irish Dance Academy
+                                (Longmont, CO) taught by Susannah Ruehlen ADCRG and the Connolly Academy of Irish Dance
+                                (Lakewood, CO) taught by Louise Connolly ADCRG. Two schools with like-minded passion and
+                                values, combining over 28 years of experience to bring the best out of our dancers across
+                                the Colorado Front Range.
+                            </p>
+
+                            <a
+                                href="https://connollyirishdance.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-3 btn-outline"
+                                aria-label="Visit the Connolly Irish Dance Academy website"
+                            >
+                                <span>Visit Connolly Irish Dance</span>
+                                <ChevronRight size={14} aria-hidden="true" />
+                            </a>
+                        </div>
                     </div>
-                    <h2 id="sister-heading" className="font-display text-3xl sm:text-4xl font-light mb-4"
-                        style={{ color: 'var(--color-text)' }}>
-                        Avoca is Sister Schools with{' '}
-                        <span className="gradient-text">Connolly Irish Dance</span>
-                    </h2>
-                    <p className="text-base leading-relaxed mb-6 font-body" style={{ color: 'var(--color-text-muted)' }}>
-                        We are thrilled about the association between the Avoca Irish Dance Academy (Longmont, CO) taught by Susannah Ruehlen ADCRG
-                        and the Connolly Academy of Irish Dance (Lakewood, CO) taught by Louise Connolly ADCRG. Two schools with like-minded
-                        passion and values, combining 28+ years of combined experience.
-                    </p>
-                    <a
-                        href="https://connollyirishdance.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-outline"
-                        aria-label="Visit the Connolly Irish Dance Academy website"
-                    >
-                        Visit Connolly Irish Dance
-                        <ChevronRight size={16} aria-hidden="true" />
-                    </a>
                 </div>
             </section>
 

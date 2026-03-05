@@ -54,8 +54,8 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-accent-dark);
-  border-radius: 3px;
+  background: linear-gradient(180deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -64,8 +64,8 @@ body::before {
 
 /* Base selection */
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: rgba(201, 168, 76, 0.35);
+  color: var(--color-text);
 }
 
 /* Focus ring */
@@ -143,8 +143,9 @@ body::before {
 }
 
 .card:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.08), 0 4px 24px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
 }
 
 /* Btn */
@@ -170,6 +171,7 @@ body::before {
   background: var(--color-accent-light);
   border-color: var(--color-accent-light);
   transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.35);
 }
 
 .btn-outline {
@@ -200,9 +202,21 @@ body::before {
 /* Page hero banner (non-home pages) */
 .page-banner {
   background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.12);
   padding: 7rem 1.5rem 4rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3), transparent);
 }
 
 .page-banner h1 {

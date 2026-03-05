@@ -56,10 +56,10 @@ export default function Navbar() {
                 className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
                 style={{
                     background: scrolled
-                        ? 'rgba(12,15,10,0.97)'
-                        : 'linear-gradient(to bottom, rgba(12,15,10,0.85), transparent)',
-                    backdropFilter: scrolled ? 'blur(10px)' : 'none',
-                    borderBottom: scrolled ? '1px solid rgba(201,168,76,0.15)' : 'none',
+                        ? 'rgba(10,10,10,0.97)'
+                        : 'linear-gradient(to bottom, rgba(10,10,10,0.80), transparent)',
+                    backdropFilter: scrolled ? 'blur(16px) saturate(1.4)' : 'none',
+                    borderBottom: scrolled ? '1px solid rgba(201,168,76,0.12)' : 'none',
                 }}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
@@ -134,6 +134,9 @@ export default function Navbar() {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn-primary hidden md:inline-flex text-sm py-2 px-4"
+                            style={{ boxShadow: 'none', transition: 'background 0.2s, box-shadow 0.2s' }}
+                            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(201,168,76,0.35)'}
+                            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
                             aria-label="Sign up for a free Irish dance class trial"
                         >
                             Try a Free Class
@@ -156,8 +159,8 @@ export default function Navbar() {
                     id="mobile-menu"
                     className="lg:hidden overflow-hidden transition-all duration-300"
                     style={{
-                        maxHeight: menuOpen ? '400px' : '0',
-                        background: 'rgba(12,15,10,0.98)',
+                        maxHeight: menuOpen ? '420px' : '0',
+                        background: 'rgba(10,10,10,0.98)',
                         borderTop: menuOpen ? '1px solid rgba(201,168,76,0.1)' : 'none',
                     }}
                     aria-hidden={!menuOpen}

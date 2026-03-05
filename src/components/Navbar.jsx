@@ -71,7 +71,7 @@ export default function Navbar() {
                     >
                         <div className="flex flex-col leading-none">
                             <span
-                                className="font-display text-2xl font-semibold tracking-wide"
+                                className="font-display text-2xl font-light tracking-wide"
                                 style={{ color: 'var(--color-accent)' }}
                             >
                                 AVOCA

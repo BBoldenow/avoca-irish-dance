@@ -51,7 +51,7 @@ export default function Registration() {
                             <div>
                                 <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5"
                                     style={{ color: 'var(--color-accent)' }}>New Students</span>
-                                <h2 id="new-reg-heading" className="font-display text-2xl font-semibold m-0"
+                                <h2 id="new-reg-heading" className="font-display text-2xl font-light m-0"
                                     style={{ color: 'var(--color-accent)' }}>
                                     Registration
                                 </h2>
@@ -83,7 +83,7 @@ export default function Registration() {
                             <div>
                                 <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5"
                                     style={{ color: 'var(--color-accent)' }}>Existing Families</span>
-                                <h2 id="portal-heading" className="font-display text-2xl font-semibold m-0"
+                                <h2 id="portal-heading" className="font-display text-2xl font-light m-0"
                                     style={{ color: 'var(--color-accent)' }}>
                                     Parent Portal
                                 </h2>
@@ -108,7 +108,7 @@ export default function Registration() {
 
                 {/* Notes */}
                 <div className="card p-6" style={{ background: 'rgba(201,168,76,0.05)' }}>
-                    <h3 className="font-display text-lg font-semibold mb-3" style={{ color: 'var(--color-accent)' }}>
+                    <h3 className="font-display text-lg font-light mb-3" style={{ color: 'var(--color-accent)' }}>
                         Enrollment Notes
                     </h3>
                     <ul className="list-none m-0 p-0 space-y-2" role="list">

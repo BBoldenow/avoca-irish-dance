@@ -54,7 +54,7 @@ export default function Rates() {
                             style={{ background: 'rgba(201,168,76,0.15)' }}>
                             <DollarSign size={20} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
                         </div>
-                        <h2 id="tuition-heading" className="font-display text-2xl font-semibold m-0"
+                        <h2 id="tuition-heading" className="font-display text-2xl font-light m-0"
                             style={{ color: 'var(--color-accent)' }}>
                             How Tuition Works
                         </h2>
@@ -80,7 +80,7 @@ export default function Rates() {
 
                 {/* Family discounts */}
                 <article className="rate-block card p-8" aria-labelledby="family-discount-heading">
-                    <h2 id="family-discount-heading" className="font-display text-2xl font-semibold mb-5"
+                    <h2 id="family-discount-heading" className="font-display text-2xl font-light mb-5"
                         style={{ color: 'var(--color-accent)' }}>
                         Family Discounts
                     </h2>
@@ -96,7 +96,7 @@ export default function Rates() {
                                     className="flex flex-col items-center justify-center p-5 rounded-lg text-center"
                                     style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.2)' }}
                                 >
-                                    <span className="text-2xl font-display font-semibold mb-1"
+                                    <span className="text-2xl font-display font-light mb-1"
                                         style={{ color: 'var(--color-accent)' }}>{pct}</span>
                                     <span className="text-xs font-body" style={{ color: 'var(--color-text-muted)' }}>{child}</span>
                                 </div>

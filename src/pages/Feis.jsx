@@ -69,7 +69,7 @@ export default function Feis() {
                         style={{ color: 'var(--color-accent)' }}>
                         Presented by Avoca Irish Dance Academy & Dancers Foundation
                     </p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-semibold mb-2"
+                    <h2 className="font-display text-3xl sm:text-4xl font-light mb-2"
                         style={{ color: 'var(--color-text)' }}>
                         Friday, October 10<sup>th</sup> &amp; Saturday, October 11<sup>th</sup>{' '}
                         <span style={{ color: 'var(--color-accent)' }}>2025</span>
@@ -82,7 +82,7 @@ export default function Feis() {
                     <article className="feis-block card p-6" aria-labelledby="feis-location">
                         <div className="flex items-center gap-3 mb-4">
                             <MapPin size={20} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                            <h2 id="feis-location" className="font-display text-xl font-semibold m-0"
+                            <h2 id="feis-location" className="font-display text-xl font-light m-0"
                                 style={{ color: 'var(--color-accent)' }}>Location</h2>
                         </div>
                         <p className="text-sm leading-relaxed font-body m-0" style={{ color: 'var(--color-text-muted)' }}>
@@ -100,7 +100,7 @@ export default function Feis() {
                     <article className="feis-block card p-6" aria-labelledby="feis-register">
                         <div className="flex items-center gap-3 mb-4">
                             <Calendar size={20} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                            <h2 id="feis-register" className="font-display text-xl font-semibold m-0"
+                            <h2 id="feis-register" className="font-display text-xl font-light m-0"
                                 style={{ color: 'var(--color-accent)' }}>Register</h2>
                         </div>
                         <ul className="list-none m-0 p-0 space-y-2 text-sm font-body mb-5"
@@ -125,7 +125,7 @@ export default function Feis() {
                 {/* Halloween Feis */}
                 <article className="feis-block card p-8 overflow-hidden" aria-labelledby="halloween-heading">
                     <img src="/images/feis-banner.png" alt="Halloween Feis Banner" className="w-full h-48 object-cover mb-6 rounded-lg" />
-                    <h2 id="halloween-heading" className="font-display text-2xl font-semibold mb-3"
+                    <h2 id="halloween-heading" className="font-display text-2xl font-light mb-3"
                         style={{ color: 'var(--color-accent)' }}>
                         🎃 Halloween Feis — Friday, October 10th
                     </h2>
@@ -150,7 +150,7 @@ export default function Feis() {
                     ].map(({ title, icon: Icon, items }) => (
                         <article key={title} className="feis-block card p-5" aria-labelledby={`section-${title.replace(/\s/g, '')}`}>
                             <h3 id={`section-${title.replace(/\s/g, '')}`}
-                                className="font-display text-lg font-semibold mb-3 pb-2"
+                                className="font-display text-lg font-light mb-3 pb-2"
                                 style={{ color: 'var(--color-accent)', borderBottom: '1px solid rgba(201,168,76,0.2)' }}>
                                 {title}
                             </h3>

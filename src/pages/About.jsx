@@ -95,7 +95,7 @@ export default function About() {
                                 <div>
                                     <h2
                                         id={`instructor-${inst.name.replace(/\s/g, '-')}`}
-                                        className="font-display text-2xl font-semibold m-0 mb-1"
+                                        className="font-display text-2xl font-light m-0 mb-1"
                                         style={{ color: 'var(--color-accent)' }}
                                     >
                                         {inst.name}
@@ -123,7 +123,7 @@ export default function About() {
                 aria-labelledby="sister-schools-heading"
             >
                 <div className="max-w-3xl mx-auto text-center">
-                    <h2 id="sister-schools-heading" className="font-display text-3xl sm:text-4xl font-semibold mb-4"
+                    <h2 id="sister-schools-heading" className="font-display text-3xl sm:text-4xl font-light mb-4"
                         style={{ color: 'var(--color-text)' }}>
                         Sister Schools with Connolly Irish Dance
                     </h2>

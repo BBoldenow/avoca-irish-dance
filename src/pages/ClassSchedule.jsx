@@ -86,7 +86,7 @@ export default function ClassSchedule() {
                         <article key={day} className="day-card card p-6" aria-labelledby={`day-${day.replace(/\s/g, '-')}`}>
                             <h2
                                 id={`day-${day.replace(/\s/g, '-')}`}
-                                className="font-display text-xl font-semibold mb-4 pb-3"
+                                className="font-display text-xl font-light mb-4 pb-3"
                                 style={{
                                     color: 'var(--color-accent)',
                                     borderBottom: '1px solid rgba(201,168,76,0.2)',

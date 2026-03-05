@@ -14,7 +14,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <p
-                            className="font-display text-3xl font-semibold mb-2"
+                            className="font-display text-3xl font-light mb-2"
                             style={{ color: 'var(--color-accent)' }}
                         >
                             AVOCA

@@ -57,7 +57,7 @@ export default function Contact() {
                     {/* Contact info */}
                     <div className="space-y-5">
                         <article className="contact-block card p-6" aria-labelledby="studio-address">
-                            <h2 id="studio-address" className="font-display text-xl font-semibold mb-4"
+                            <h2 id="studio-address" className="font-display text-xl font-light mb-4"
                                 style={{ color: 'var(--color-accent)' }}>Studio Location</h2>
                             <address style={{ fontStyle: 'normal' }}>
                                 <div className="flex items-start gap-3 mb-4">
@@ -84,7 +84,7 @@ export default function Contact() {
                         </article>
 
                         <article className="contact-block card p-6" aria-labelledby="contact-details">
-                            <h2 id="contact-details" className="font-display text-xl font-semibold mb-4"
+                            <h2 id="contact-details" className="font-display text-xl font-light mb-4"
                                 style={{ color: 'var(--color-accent)' }}>Registration Contact</h2>
                             <p className="text-sm font-medium mb-3 font-body" style={{ color: 'var(--color-text)' }}>
                                 Susannah Ruehlen
@@ -124,13 +124,13 @@ export default function Contact() {
 
                     {/* Contact form */}
                     <div className="contact-block card p-8">
-                        <h2 className="font-display text-2xl font-semibold mb-6" style={{ color: 'var(--color-accent)' }}>
+                        <h2 className="font-display text-2xl font-light mb-6" style={{ color: 'var(--color-accent)' }}>
                             Send a Message
                         </h2>
                         {submitted ? (
                             <div className="text-center py-8">
                                 <p className="text-2xl mb-3" aria-live="polite">✉️</p>
-                                <p className="font-display text-xl font-semibold mb-2" style={{ color: 'var(--color-accent)' }}>
+                                <p className="font-display text-xl font-light mb-2" style={{ color: 'var(--color-accent)' }}>
                                     Thanks for reaching out!
                                 </p>
                                 <p className="text-sm font-body" style={{ color: 'var(--color-text-muted)' }}>
@@ -233,7 +233,7 @@ export default function Contact() {
                     <div className="relative w-full aspect-video min-h-[400px] border border-[rgba(201,168,76,0.15)] overflow-hidden rounded-xl">
                         <iframe
                             title="Avoca Irish Dance Studio Location"
-                            src="https://maps.google.com/maps?q=1515%20Main%20Street%20Longmont,%20CO%2080501&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.0682610470794!2d-105.1031289!3d40.1852943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876bf96dfc846fbf%3A0xe69aec57c93c6628!2sAvoca%20Irish%20Dance%20Academy!5e0!3m2!1sen!2sus!4v1772733554788!5m2!1sen!2sus"
                             width="100%"
                             height="100%"
                             style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg) saturate(0.3)' }}

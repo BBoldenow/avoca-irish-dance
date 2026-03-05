@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
 import { Award } from 'lucide-react'
+import susannahImg from '../assets/images/susannah.avif'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,7 +11,7 @@ const instructors = [
     {
         name: 'Susannah Ruehlen',
         title: 'TCRG, ADCRG — Owner & Teacher',
-        image: '/images/about-susannah.png',
+        image: susannahImg,
         bio: `Susannah started her Irish Dancing career at age 7 in Colorado under the instruction of Maureen Hall. In 1997, she joined Richens-Timm Academy in Columbus, Ohio, rising to the top of her competition in the Western Region, Mid-America Region, and at the North American Irish Dance Championships — qualifying and competing multiple times at the World Championships.
 
 In 1998 she auditioned for Riverdance and joined the first American Riverdance Flying Squad, touring the United States for 3 years including finale performances with the original North American troupe, The Lee Company.

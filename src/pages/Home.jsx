@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import heroBg from '../assets/images/hero-bg.png'
 import { useMeta } from '../hooks/useMeta.js'
 import { ChevronRight, Star, Heart, Users } from 'lucide-react'
 
@@ -100,7 +101,7 @@ export default function Home() {
                 <div
                     className="absolute inset-0"
                     style={{
-                        backgroundImage: 'url(/images/hero-bg.png)',
+                        backgroundImage: `url(${heroBg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         opacity: 0.4,

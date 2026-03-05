@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
 import { Calendar, MapPin, Trophy, ChevronRight } from 'lucide-react'
+import feisBanner from '../assets/images/feis-banner.png'
 
 gsap.registerPlugin(ScrollTrigger)
 

@@ -3,13 +3,15 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
 import { X } from 'lucide-react'
+import gallery1 from '../assets/images/gallery-1.png'
+import gallery2 from '../assets/images/gallery-2.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Placeholder gallery items using gradient-based image placeholders
 const galleryItems = [
-    { id: 1, title: 'Competition Performance', aspect: 'tall', image: '/images/gallery-1.png' },
-    { id: 2, title: 'Team Dance', aspect: 'wide', image: '/images/gallery-2.png' },
+    { id: 1, title: 'Competition Performance', aspect: 'tall', image: gallery1 },
+    { id: 2, title: 'Team Dance', aspect: 'wide', image: gallery2 },
     { id: 3, title: 'World Championships', aspect: 'square' },
     { id: 4, title: 'Feis Competition', aspect: 'tall' },
     { id: 5, title: 'Studio Practice', aspect: 'wide' },

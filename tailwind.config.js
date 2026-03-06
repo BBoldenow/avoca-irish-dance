@@ -4,16 +4,26 @@ export default {
   theme: {
     extend: {
       colors: {
-        'bg': '#0D0D0B',
-        'surface': '#161612',
-        'surface-2': '#1E1E19',
-        'accent': '#C49A3C',
-        'accent-light': '#D4AE5C',
-        'accent-dark': '#9A7828',
-        'text-main': '#EDE8DC',
-        'text-muted': '#7A7568',
-        'border-subtle': 'rgba(237,232,220,0.07)',
-        'border': 'rgba(196,154,60,0.18)',
+        black: {
+          DEFAULT: '#0d0d0b',
+          soft: '#161612',
+          mid: '#1e1e19',
+          border: '#2a2a2a',
+        },
+        gold: {
+          DEFAULT: '#c49a3c',
+          light: '#d4ae5c',
+          dark: '#9a7828',
+          subtle: 'rgba(196,154,60,0.12)',
+        },
+        cream: {
+          DEFAULT: '#ede8dc',
+          dark: '#7a7568',
+        },
+        ink: {
+          DEFAULT: '#0d0d0b',
+          soft: '#161612',
+        },
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Georgia', 'serif'],

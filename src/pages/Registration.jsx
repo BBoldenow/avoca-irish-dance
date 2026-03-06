@@ -3,6 +3,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
 import { UserPlus, LayoutDashboard, ChevronRight } from 'lucide-react'
+import SectionLabel from '../components/ui/SectionLabel.jsx'
+import Button from '../components/ui/Button.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -33,91 +35,105 @@ export default function Registration() {
     }, [])
 
     return (
-        <div className="bg-bg">
-            <div className="page-banner">
-                <h1>Registration & Parent Portal</h1>
-                <p>New families and returning families — start here.</p>
+        <div className="bg-ink min-h-screen">
+            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+                {/* Subtle radial glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
+
+                <div className="relative z-10 reg-card">
+                    <SectionLabel className="mb-6">Join Us</SectionLabel>
+                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-gold mb-6 font-light">
+                        Registration & <span className="italic text-gold-light">Parent Portal</span>
+                    </h1>
+                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                        New and returning families — manage your enrollment here.
+                    </p>
+                </div>
             </div>
 
-            <section ref={contentRef} className="section-pad max-w-4xl mx-auto" aria-label="Registration options">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <section ref={contentRef} className="section-padding max-w-5xl mx-auto relative" aria-label="Registration options">
+                {/* Ambient background glow */}
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-gold/5 blur-[120px] pointer-events-none" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 relative z-10">
                     {/* New families */}
-                    <article className="reg-card card p-8 flex flex-col" aria-labelledby="new-reg-heading">
-                        <div className="flex items-center gap-3 mb-5">
-                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/15">
-                                <UserPlus size={22} className="text-accent" aria-hidden="true" />
+                    <article className="reg-card relative p-8 md:p-10 border border-gold/10 bg-ink-soft/40 backdrop-blur-sm group hover:border-gold/30 transition-colors duration-500 flex flex-col" aria-labelledby="new-reg-heading">
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gold/10 group-hover:bg-gold/20 transition-colors duration-500 border border-gold/10 relative">
+                                <div className="absolute inset-0 bg-gold/20 rounded-full blur-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                <UserPlus size={20} className="text-gold relative z-10" aria-hidden="true" />
                             </div>
                             <div>
-                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5 text-accent">
+                                <span className="text-[10px] font-medium tracking-[0.25em] uppercase font-body block mb-1 text-gold/60">
                                     New Students
                                 </span>
-                                <h2 id="new-reg-heading" className="font-display text-2xl font-light m-0 text-accent">
+                                <h2 id="new-reg-heading" className="font-display text-2xl font-light m-0 text-gold-light group-hover:text-gold transition-colors duration-500">
                                     Registration
                                 </h2>
                             </div>
                         </div>
-                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body text-text-muted">
-                            If you are enrolling for the <strong className="text-text-main">first time</strong>, click below
+                        <p className="text-[0.95rem] leading-[1.8] mb-8 flex-1 font-body text-cream/70 font-light">
+                            If you are enrolling for the <strong className="text-cream font-medium">first time</strong>, click below
                             to set up your family information. You'll be able to enroll in classes during the registration process.
                         </p>
-                        <a
+                        <Button
                             href="https://app.jackrabbitclass.com/regv2.asp?id=537819"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-primary justify-center text-center"
-                            aria-label="Register your family for the first time at Avoca Irish Dance"
+                            className="w-full text-center"
                         >
                             Register Now
-                            <ChevronRight size={16} aria-hidden="true" />
-                        </a>
+                        </Button>
                     </article>
 
                     {/* Existing families */}
-                    <article className="reg-card card p-8 flex flex-col" aria-labelledby="portal-heading">
-                        <div className="flex items-center gap-3 mb-5">
-                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/15">
-                                <LayoutDashboard size={22} className="text-accent" aria-hidden="true" />
+                    <article className="reg-card relative p-8 md:p-10 border border-gold/10 bg-ink-soft/40 backdrop-blur-sm group hover:border-gold/30 transition-colors duration-500 flex flex-col" aria-labelledby="portal-heading">
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gold/10 group-hover:bg-gold/20 transition-colors duration-500 border border-gold/10 relative">
+                                <div className="absolute inset-0 bg-gold/20 rounded-full blur-[10px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                                <LayoutDashboard size={20} className="text-gold relative z-10" aria-hidden="true" />
                             </div>
                             <div>
-                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5 text-accent">
+                                <span className="text-[10px] font-medium tracking-[0.25em] uppercase font-body block mb-1 text-gold/60">
                                     Existing Families
                                 </span>
-                                <h2 id="portal-heading" className="font-display text-2xl font-light m-0 text-accent">
+                                <h2 id="portal-heading" className="font-display text-2xl font-light m-0 text-gold-light group-hover:text-gold transition-colors duration-500">
                                     Parent Portal
                                 </h2>
                             </div>
                         </div>
-                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body text-text-muted">
-                            If you have <strong className="text-text-main">previously registered</strong>, log in to the
+                        <p className="text-[0.95rem] leading-[1.8] mb-8 flex-1 font-body text-cream/70 font-light">
+                            If you have <strong className="text-cream font-medium">previously registered</strong>, log in to the
                             Parent Portal to edit contact info, view invoices, payment history, and register for new classes.
                         </p>
-                        <a
+                        <Button
                             href="https://app.jackrabbitclass.com/jr3.0/ParentPortal/Login?orgID=537819"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn-outline justify-center text-center"
-                            aria-label="Log in to the Avoca Irish Dance parent portal"
+                            variant="secondary"
+                            className="w-full text-center"
                         >
                             Parent Portal Login
-                            <ChevronRight size={16} aria-hidden="true" />
-                        </a>
+                        </Button>
                     </article>
                 </div>
 
+                <div className="section-divider my-12" />
+
                 {/* Notes */}
-                <div className="card p-6 bg-accent/5">
-                    <h3 className="font-display text-lg font-light mb-3 text-accent">
+                <div className="reg-card relative p-8 md:p-10 border border-gold/10 bg-ink-soft/20 group hover:border-gold/20 transition-colors duration-500 relative z-10">
+                    <h3 className="font-display text-2xl font-light mb-6 text-gold-light group-hover:text-gold transition-colors duration-500">
                         Enrollment Notes
                     </h3>
-                    <ul className="list-none m-0 p-0 space-y-2" role="list">
+                    <ul className="list-none m-0 p-0 space-y-4" role="list">
                         {[
                             'Class beginning and ending dates represent our entire Dance Year Session — you will be enrolled and charged monthly.',
                             'Those enrolling after the 1st class of the month will have fees pro-rated for the first month only.',
                             'If you have any questions or concerns, please do not hesitate to contact us.',
                         ].map((note, i) => (
-                            <li key={i} className="flex items-start gap-3">
-                                <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-accent" aria-hidden="true" />
-                                <span className="text-sm leading-relaxed font-body text-text-muted">
+                            <li key={i} className="flex items-start gap-4">
+                                <div className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold/40 group-hover:bg-gold/60 transition-colors duration-500" aria-hidden="true" />
+                                <span className="text-[0.95rem] leading-[1.6] font-body text-cream/70 font-light">
                                     {note}
                                 </span>
                             </li>

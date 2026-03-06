@@ -5,6 +5,7 @@ import { useMeta } from '../hooks/useMeta.js'
 import { Award } from 'lucide-react'
 import susannahImg from '../assets/images/susannah.avif'
 import SisterSchools from '../components/SisterSchools.jsx'
+import SectionLabel from '../components/ui/SectionLabel.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -62,63 +63,89 @@ export default function About() {
     }, [])
 
     return (
-        <div className="bg-bg">
+        <div className="bg-ink min-h-screen">
             {/* Banner */}
-            <div className="page-banner" role="banner">
-                <h1>Our Instructors</h1>
-                <p>Meet the passionate teachers behind Avoca Irish Dance Academy.</p>
+            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+                {/* Subtle radial glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
+
+                <div className="relative z-10">
+                    <SectionLabel className="mb-6">About Us</SectionLabel>
+                    <h1 className="font-display text-5xl md:text-6xl text-gold mb-6 font-light">Our Instructors</h1>
+                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                        Meet the passionate teachers behind Avoca Irish Dance Academy.
+                    </p>
+                </div>
             </div>
 
             {/* Instructors */}
             <section
                 ref={cardsRef}
-                className="section-pad max-w-4xl mx-auto"
+                className="section-padding max-w-4xl mx-auto"
                 aria-label="Instructor profiles"
             >
-                <div className="space-y-8">
+                <div className="space-y-8 relative">
+                    {/* Background glow behind cards */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[80%] bg-gold/5 blur-[120px] pointer-events-none" />
+
                     {instructors.map((inst) => (
-                        <article key={inst.name} className="instructor-card card p-8" aria-labelledby={`instructor-${inst.name.replace(/\s/g, '-')}`}>
-                            <div className="flex items-start gap-4 mb-5">
+                        <article
+                            key={inst.name}
+                            className="instructor-card relative p-8 md:p-10 border border-gold/10 bg-ink-soft/40 backdrop-blur-sm group hover:border-gold/30 transition-colors duration-500"
+                            aria-labelledby={`instructor-${inst.name.replace(/\s/g, '-')}`}
+                        >
+                            <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-8">
                                 {inst.image ? (
-                                    <img
-                                        src={inst.image}
-                                        alt={inst.name}
-                                        className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-                                    />
+                                    <div className="relative flex-shrink-0">
+                                        <div className="absolute inset-0 bg-gold/20 rounded-full blur-[20px] group-hover:bg-gold/40 transition-colors duration-500 pointer-events-none" />
+                                        <img
+                                            src={inst.image}
+                                            alt={inst.name}
+                                            className="relative w-24 h-24 rounded-full object-cover border border-gold/20 shadow-lg shadow-black/50"
+                                        />
+                                    </div>
                                 ) : (
                                     <div
-                                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 bg-accent/15"
+                                        className="relative w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 bg-gold/10 group-hover:bg-gold/20 transition-colors duration-500 border border-gold/10"
                                         aria-hidden="true"
                                     >
-                                        <Award size={22} className="text-accent" />
+                                        <Award size={32} className="text-gold" />
                                     </div>
                                 )}
-                                <div>
+                                <div className="pt-2">
                                     <h2
                                         id={`instructor-${inst.name.replace(/\s/g, '-')}`}
-                                        className="font-display text-2xl font-light m-0 mb-1 text-accent"
+                                        className="font-display text-3xl font-light m-0 mb-2 text-gold-light group-hover:text-gold transition-colors duration-500"
                                     >
                                         {inst.name}
                                     </h2>
-                                    <p className="text-sm font-medium m-0 font-body text-text-muted">
+                                    <p className="text-[11px] uppercase tracking-[0.2em] font-medium font-body text-cream/50 m-0">
                                         {inst.title}
                                     </p>
                                 </div>
                             </div>
-                            {inst.bio.split('\n\n').map((para, i) => (
-                                <p key={i} className="text-sm leading-relaxed mb-3 last:mb-0 font-body text-text-muted">
-                                    {para}
-                                </p>
-                            ))}
+                            <div className="pl-0 sm:pl-[128px]">
+                                {inst.bio.split('\n\n').map((para, i) => (
+                                    <p key={i} className="text-[0.95rem] leading-[1.8] mb-4 last:mb-0 font-body text-cream/70 font-light">
+                                        {para}
+                                    </p>
+                                ))}
+                            </div>
                         </article>
                     ))}
                 </div>
             </section>
 
+            {/* Section Divider */}
+            <div className="section-divider" />
+
             {/* Sister Schools */}
-            <div className="section">
+            <div className="section-padding">
                 <SisterSchools />
             </div>
+
+            {/* Section Divider */}
+            <div className="section-divider" />
         </div>
     )
 }

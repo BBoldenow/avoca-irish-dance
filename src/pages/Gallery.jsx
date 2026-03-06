@@ -5,6 +5,7 @@ import { useMeta } from '../hooks/useMeta.js'
 import { X } from 'lucide-react'
 import gallery1 from '../assets/images/gallery-1.png'
 import gallery2 from '../assets/images/gallery-2.png'
+import SectionLabel from '../components/ui/SectionLabel.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -21,28 +22,24 @@ const galleryItems = [
 ]
 
 const gradients = [
-    'linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 50%, #1a3a2a 100%)',
-    'linear-gradient(135deg, #2a1a0a 0%, #6a4a2d 50%, #2a1a0a 100%)',
-    'linear-gradient(135deg, #0a1a2a 0%, #2d4f6a 50%, #0a1a2a 100%)',
-    'linear-gradient(135deg, #1a2a0a 0%, #4f6a2d 50%, #1a2a0a 100%)',
-    'linear-gradient(135deg, #2a0a1a 0%, #6a2d4f 50%, #2a0a1a 100%)',
-    'linear-gradient(135deg, #0a2a1a 0%, #2d6a4f 50%, #0a2a1a 100%)',
-    'linear-gradient(135deg, #1a1a2a 0%, #4f4a6a 50%, #1a1a2a 100%)',
-    'linear-gradient(135deg, #2a1a1a 0%, #6a4a4a 50%, #2a1a1a 100%)',
+    'linear-gradient(135deg, #0A0A08 0%, #161612 100%)',
+    'linear-gradient(135deg, #11110E 0%, #20201A 100%)',
+    'linear-gradient(135deg, #0D0D0B 0%, #1A1A15 100%)',
+    'linear-gradient(135deg, #141411 0%, #0A0A08 100%)',
 ]
 
 function GalleryPlaceholder({ index, title, image }) {
     if (image) {
-        return <img src={image} alt={title} className="w-full h-full object-cover" />
+        return <img src={image} alt={title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
     }
     return (
         <div
-            className="w-full h-full flex flex-col items-center justify-center p-4 text-center"
+            className="w-full h-full flex flex-col items-center justify-center p-4 text-center transition-transform duration-700 group-hover:scale-105"
             style={{ background: gradients[index % gradients.length] }}
             aria-label={title}
         >
-            <span className="text-4xl mb-2" aria-hidden="true">🪘</span>
-            <span className="text-xs font-body font-medium" style={{ color: 'rgba(240,237,230,0.6)' }}>
+            <span className="text-4xl mb-4 opacity-50 drop-shadow-lg" aria-hidden="true">🪘</span>
+            <span className="text-[10px] font-body font-medium uppercase tracking-[0.2em] text-cream/40">
                 {title}
             </span>
         </div>
@@ -85,40 +82,57 @@ export default function Gallery() {
     }, [lightbox])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
-            <div className="page-banner">
-                <h1>Gallery</h1>
-                <p>A glimpse into our dancers, competitions, and performances.</p>
+        <div className="bg-ink min-h-screen">
+            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+                {/* Subtle radial glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
+
+                <div className="relative z-10 gallery-item">
+                    <SectionLabel className="mb-6">Moments</SectionLabel>
+                    <h1 className="font-display text-5xl md:text-6xl text-gold mb-6 font-light">Gallery</h1>
+                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                        A glimpse into our dancers, competitions, and performances.
+                    </p>
+                </div>
             </div>
 
-            <section ref={gridRef} className="section-pad max-w-6xl mx-auto" aria-label="Photo gallery">
+            <section ref={gridRef} className="section-padding max-w-7xl mx-auto" aria-label="Photo gallery">
                 <div
                     className="grid gap-4"
                     style={{
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                        gridAutoRows: '200px',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                        gridAutoRows: '250px',
                     }}
                 >
                     {galleryItems.map((item, i) => (
                         <button
                             key={item.id}
-                            className="gallery-item overflow-hidden rounded-xl transition-transform duration-300 hover:scale-105 focus-visible:outline-accent cursor-pointer"
+                            className="group gallery-item overflow-hidden focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold cursor-pointer relative"
                             style={{
                                 gridRow: item.aspect === 'tall' ? 'span 2' : item.aspect === 'wide' ? 'span 1' : 'span 1',
-                                background: 'var(--color-surface)',
-                                border: '1px solid rgba(201,168,76,0.15)',
                             }}
                             onClick={() => setLightbox(item)}
                             aria-label={`View photo: ${item.title}`}
                         >
+                            <div className="absolute inset-0 border border-gold/15 bg-ink-soft/40 backdrop-blur-sm group-hover:border-gold/30 transition-colors duration-500 z-10 pointer-events-none" />
                             <GalleryPlaceholder index={i} title={item.title} image={item.image} />
+
+                            {/* Hover Overlay */}
+                            <div className="absolute inset-0 bg-ink/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center z-20">
+                                <span className="text-[10px] uppercase tracking-[0.25em] font-medium text-gold font-body border border-gold/30 px-6 py-2.5 bg-ink-soft/50 backdrop-blur-sm">
+                                    View Image
+                                </span>
+                            </div>
                         </button>
                     ))}
                 </div>
 
-                <p className="text-center mt-8 text-sm font-body" style={{ color: 'var(--color-text-muted)' }}>
-                    Photos coming soon! Contact us to share your Avoca dance memories.
-                </p>
+                <div className="mt-20 pt-10 border-t border-gold/10 text-center relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+                    <p className="text-sm font-body font-light text-cream/60">
+                        Photos coming soon! Contact us to share your Avoca dance memories.
+                    </p>
+                </div>
             </section>
 
             {/* Lightbox */}
@@ -127,34 +141,35 @@ export default function Gallery() {
                     role="dialog"
                     aria-modal="true"
                     aria-label={`Photo: ${lightbox.title}`}
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4"
-                    style={{ background: 'rgba(0,0,0,0.9)' }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 lg:p-12"
+                    style={{ background: 'rgba(10,10,8,0.95)', backdropFilter: 'blur(10px)' }}
                     onClick={() => setLightbox(null)}
                 >
                     <div
-                        className="relative max-w-2xl w-full rounded-xl overflow-hidden"
-                        style={{ height: 400, background: 'var(--color-surface)' }}
+                        className="relative max-w-5xl w-full h-full max-h-[85vh] overflow-hidden border border-gold/20 flex flex-col bg-ink"
                         onClick={e => e.stopPropagation()}
                     >
-                        <GalleryPlaceholder
-                            index={galleryItems.findIndex(g => g.id === lightbox.id)}
-                            title={lightbox.title}
-                            image={lightbox.image}
-                        />
-                        <button
-                            onClick={() => setLightbox(null)}
-                            className="absolute top-3 right-3 p-2 rounded-full"
-                            style={{ background: 'rgba(0,0,0,0.5)', color: 'var(--color-text)' }}
-                            aria-label="Close photo viewer"
-                        >
-                            <X size={18} />
-                        </button>
-                        <p
-                            className="absolute bottom-0 left-0 right-0 px-4 py-3 text-sm font-body text-center"
-                            style={{ background: 'rgba(0,0,0,0.6)', color: 'var(--color-text)' }}
-                        >
-                            {lightbox.title}
-                        </p>
+                        <div className="flex-1 relative bg-black/50 overflow-hidden flex items-center justify-center">
+                            <GalleryPlaceholder
+                                index={galleryItems.findIndex(g => g.id === lightbox.id)}
+                                title={lightbox.title}
+                                image={lightbox.image}
+                            />
+                        </div>
+
+                        <div className="bg-ink-soft border-t border-gold/15 flex items-center justify-between px-6 py-4">
+                            <p className="text-[11px] uppercase tracking-[0.2em] font-medium font-body text-cream">
+                                {lightbox.title}
+                            </p>
+                            <button
+                                onClick={() => setLightbox(null)}
+                                className="flex items-center gap-2 text-cream/50 hover:text-gold transition-colors duration-300"
+                                aria-label="Close photo viewer"
+                            >
+                                <span className="text-[10px] uppercase tracking-[0.1em] font-medium font-body hidden sm:inline-block">Close</span>
+                                <X size={20} />
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -2,10 +2,12 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
+import SectionLabel from './ui/SectionLabel.jsx'
+import Button from './ui/Button.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function SisterSchools() {
+export default function SisterSchool() {
     const sectionRef = useRef(null)
 
     useEffect(() => {
@@ -33,32 +35,32 @@ export default function SisterSchools() {
     return (
         <section
             ref={sectionRef}
-            className="relative overflow-hidden border-t border-accent/10"
+            className="relative overflow-hidden border-t border-gold/10"
             aria-labelledby="sister-heading"
         >
             {/* Rich background with layered gradients */}
             <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                    background: 'linear-gradient(135deg, var(--color-surface-2) 0%, var(--color-surface) 40%, var(--color-bg) 100%)',
+                    background: 'linear-gradient(135deg, #1e1e19 0%, #161612 40%, #0d0d0b 100%)',
                 }}
             />
             {/* Gold radial glow */}
             <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(196,154,60,0.04) 0%, transparent 70%)' }}
+                style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%)' }}
             />
             {/* Decorative top/bottom hairlines */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/15 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/25 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
-            <div className="relative z-10 section-pad">
+            <div className="relative z-10 section-padding">
                 <div className="max-w-6xl mx-auto">
                     {/* Two-column layout on large screens */}
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
 
                         {/* Left: stat pillars */}
-                        <div className="sister-elem lg:col-span-2 grid grid-cols-2 gap-px bg-accent/10">
+                        <div className="sister-elem lg:col-span-2 grid grid-cols-2 gap-px bg-gold/10">
                             {[
                                 { value: '28+', label: 'Years Combined\nExperience' },
                                 { value: '2', label: 'ADCRG\nCertified Schools' },
@@ -67,10 +69,11 @@ export default function SisterSchools() {
                             ].map(({ value, label }) => (
                                 <div
                                     key={value}
-                                    className="flex flex-col items-center justify-center p-8 text-center bg-surface/70"
+                                    className="flex flex-col items-center justify-center p-8 text-center"
+                                    style={{ backgroundColor: 'rgba(22, 22, 18, 0.7)' }} // mapping to --surface
                                 >
-                                    <span className="font-display text-4xl md:text-5xl font-light text-accent mb-2">{value}</span>
-                                    <span className="font-body text-[9px] uppercase tracking-[0.2em] text-text-main/40 whitespace-pre-line leading-relaxed">{label}</span>
+                                    <span className="font-display text-4xl md:text-5xl font-light text-gold mb-2">{value}</span>
+                                    <span className="font-body text-[9px] uppercase tracking-[0.2em] text-cream/40 whitespace-pre-line leading-relaxed">{label}</span>
                                 </div>
                             ))}
                         </div>
@@ -78,20 +81,20 @@ export default function SisterSchools() {
                         {/* Right: content */}
                         <div className="lg:col-span-3 text-center lg:text-left">
                             <div className="sister-elem inline-flex items-center gap-2.5 mb-6">
-                                <div className="w-4 h-px bg-accent/50" />
-                                <span className="text-[0.65rem] uppercase tracking-widest text-accent font-semibold font-body">Partnership Announcement</span>
-                                <div className="w-4 h-px bg-accent/50" />
+                                <div className="w-4 h-px bg-gold/50" />
+                                <SectionLabel>Partnership Announcement</SectionLabel>
+                                <div className="w-4 h-px bg-gold/50" />
                             </div>
 
                             <h2
                                 id="sister-heading"
-                                className="sister-elem font-display text-3xl md:text-4xl lg:text-5xl font-light text-text-main leading-tight mb-6"
+                                className="sister-elem font-display text-3xl md:text-4xl lg:text-5xl font-light text-cream leading-tight mb-6"
                             >
                                 Avoca is Sister Schools with{' '}
-                                <span className="italic text-accent-light">Connolly Irish Dance</span>
+                                <span className="italic text-gold-light">Connolly Irish Dance</span>
                             </h2>
 
-                            <p className="sister-elem font-body text-text-main/65 text-sm md:text-base leading-relaxed font-light mb-8 max-w-2xl lg:max-w-none">
+                            <p className="sister-elem font-body text-cream/65 text-sm md:text-base leading-relaxed font-light mb-8 max-w-2xl lg:max-w-none">
                                 We are thrilled about the association between the Connolly Academy of Irish Dance
                                 (Lakewood, CO) taught by Louise Connolly ADCRG and the Avoca Irish Dance Academy
                                 (Longmont, CO) taught by Susannah Ruehlen ADCRG. Two schools with like-minded
@@ -99,16 +102,17 @@ export default function SisterSchools() {
                                 our dancers across the Colorado Front Range.
                             </p>
 
-                            <a
+                            <Button
                                 href="https://www.connollyirishdance.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="sister-elem btn-outline inline-flex items-center gap-2 group"
+                                variant="secondary"
+                                className="sister-elem group gap-2"
                                 aria-label="Visit the Connolly Irish Dance Academy website"
                             >
                                 Visit Connolly Irish Dance
                                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-                            </a>
+                            </Button>
                         </div>
                     </div>
                 </div>

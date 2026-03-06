@@ -1,216 +1,143 @@
-import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Menu, X, ChevronDown } from 'lucide-react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Button from './ui/Button.jsx'
 
-gsap.registerPlugin(ScrollTrigger)
-
-const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'About', path: '/about' },
-    { label: 'Rates', path: '/rates' },
-    { label: 'Classes', path: '/class-schedule' },
-    { label: 'Gallery', path: '/gallery' },
-    { label: 'Feis', path: '/feis' },
-    { label: 'Registration / Parent Portal', path: '/registration' },
-    { label: 'Contact', path: '/contact' },
+const NAV_LINKS = [
+    { label: 'Home', to: '/' },
+    { label: 'About', to: '/about' },
+    { label: 'Classes', to: '/class-schedule' },
+    { label: 'Rates', to: '/rates' },
+    { label: 'Gallery', to: '/gallery' },
+    { label: 'Feis', to: '/feis' },
+    { label: 'Parent Portal', to: '/registration' },
+    { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
-    const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
-    const location = useLocation()
+    const [scrolled, setScrolled] = useState(false)
     const navRef = useRef(null)
+    const logoRef = useRef(null)
+    const location = useLocation()
+    const navigate = useNavigate()
 
-    useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 40)
-        window.addEventListener('scroll', onScroll, { passive: true })
-        return () => window.removeEventListener('scroll', onScroll)
-    }, [])
-
-    // Close mobile menu on route change
+    // Close menus on route change
     useEffect(() => {
         setMenuOpen(false)
     }, [location.pathname])
 
-    // Entrance animation
     useEffect(() => {
-        gsap.set(navRef.current, { opacity: 1 })
-        gsap.fromTo(navRef.current,
-            { y: -60, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 }
-        )
+        gsap.set(navRef.current, { opacity: 1, y: 0 })
+
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ delay: 0.1 })
+            tl.from(navRef.current, { y: -60, opacity: 0, duration: 0.7, ease: 'power3.out' })
+            tl.from(logoRef.current, { opacity: 0, x: -16, duration: 0.4, ease: 'power2.out' }, '-=0.3')
+            tl.from('.nav-link', { opacity: 0, y: -8, stagger: 0.05, duration: 0.35, ease: 'power2.out' }, '-=0.25')
+        }, navRef)
+
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 60)
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll()
+
+        return () => {
+            ctx.revert()
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
 
-    const isActive = (path) =>
-        path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
+    const isActive = (to) => {
+        if (to === '/') return location.pathname === '/'
+        return location.pathname === to || (to !== '/' && location.pathname.startsWith(to))
+    }
 
     return (
         <>
             <a href="#main-content" className="skip-nav">Skip to main content</a>
             <nav
                 ref={navRef}
-                role="navigation"
-                aria-label="Main navigation"
-                className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+                className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-24"
                 style={{
-                    background: scrolled
-                        ? 'rgba(10,10,10,0.97)'
-                        : 'linear-gradient(to bottom, rgba(10,10,10,0.80), transparent)',
-                    backdropFilter: scrolled ? 'blur(16px) saturate(1.4)' : 'none',
-                    borderBottom: scrolled ? '1px solid rgba(201,168,76,0.12)' : 'none',
+                    backgroundColor: scrolled ? 'rgba(30, 30, 25, 0.97)' : 'rgba(30, 30, 25, 0.3)',
+                    backdropFilter: scrolled ? 'blur(16px) saturate(1.4)' : 'blur(4px)',
+                    borderBottom: scrolled ? '1px solid rgba(201,168,76,0.12)' : '1px solid transparent',
+                    transition: 'background-color 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease',
                 }}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 md:h-20">
+                <div className="flex items-center justify-between h-20">
                     {/* Logo */}
-                    <Link
-                        to="/"
-                        className="flex items-center gap-2 group focus-visible:outline-accent"
-                        aria-label="AVOCA&#10;IRISH DANCE ACADEMY"
-                    >
-                        <div className="flex flex-col leading-none">
-                            <span
-                                className="font-display text-2xl font-light tracking-wide"
-                                style={{ color: 'var(--color-accent)' }}
-                            >
-                                AVOCA
-                            </span>
-                            <span className="text-xs tracking-[0.25em] uppercase font-body font-light" style={{ color: 'var(--color-text-muted)' }}>
-                                Irish Dance Academy
-                            </span>
-                        </div>
+                    <Link ref={logoRef} to="/" className="flex flex-col leading-none group" aria-label="AVOCA&#10;IRISH DANCE ACADEMY">
+                        <span className="font-display text-2xl md:text-3xl font-light tracking-[0.12em] text-gold-light group-hover:text-gold transition-colors duration-300">
+                            AVOCA
+                        </span>
+                        <span className="font-body text-[10px] uppercase tracking-[0.3em] text-cream/60 group-hover:text-cream/90 transition-colors duration-300">
+                            Irish Dance Academy
+                        </span>
                     </Link>
 
-                    {/* Desktop links */}
-                    <ul className="hidden lg:flex items-center gap-1 list-none m-0 p-0" role="list">
-                        {navLinks.map(({ label, path, isExternal }) => (
-                            <li key={path}>
-                                {isExternal ? (
-                                    <a
-                                        href={path}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-3 py-2 rounded text-sm font-medium tracking-wide transition-colors duration-200 font-body relative group"
-                                        style={{ color: 'var(--color-text)' }}
-                                    >
-                                        {label}
-                                        <span
-                                            className="absolute bottom-0 left-3 right-3 h-px transition-all duration-300 transform scale-x-0 group-hover:scale-x-100"
-                                            style={{
-                                                background: 'var(--color-accent)',
-                                                transformOrigin: 'left',
-                                            }}
-                                        />
-                                    </a>
-                                ) : (
-                                    <Link
-                                        to={path}
-                                        className="px-3 py-2 rounded text-sm font-medium tracking-wide transition-colors duration-200 font-body relative group"
-                                        style={{
-                                            color: isActive(path) ? 'var(--color-accent)' : 'var(--color-text)',
-                                        }}
-                                        aria-current={isActive(path) ? 'page' : undefined}
-                                    >
-                                        {label}
-                                        <span
-                                            className="absolute bottom-0 left-3 right-3 h-px transition-all duration-300"
-                                            style={{
-                                                background: 'var(--color-accent)',
-                                                transform: isActive(path) ? 'scaleX(1)' : 'scaleX(0)',
-                                                transformOrigin: 'left',
-                                            }}
-                                        />
-                                    </Link>
-                                )}
+                    {/* Desktop nav */}
+                    <ul className="hidden lg:flex items-center gap-7">
+                        {NAV_LINKS.map((link) => (
+                            <li key={link.label}>
+                                <Link
+                                    to={link.to}
+                                    className={`nav-link font-body text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 relative group ${isActive(link.to) ? 'text-gold' : 'text-cream/60 hover:text-gold'}`}
+                                >
+                                    {link.label}
+                                    <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${isActive(link.to) ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                </Link>
                             </li>
                         ))}
                     </ul>
 
-                    {/* CTA + hamburger */}
-                    <div className="flex items-center gap-3">
-                        <a
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSdwHgYmBAiEpIEYMQETjLNLyoGOZvk_SUsQn_iL70zVVFS7DQ/viewform?usp=sf_link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn-primary hidden md:inline-flex text-sm py-2 px-4"
-                            style={{ boxShadow: 'none', transition: 'background 0.2s, box-shadow 0.2s' }}
-                            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(201,168,76,0.35)'}
-                            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-                            aria-label="Try a Free Class"
-                        >
-                            Try a Free Class
-                        </a>
-                        <button
-                            onClick={() => setMenuOpen(!menuOpen)}
-                            className="lg:hidden p-2 rounded focus-visible:outline-accent"
-                            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-                            aria-expanded={menuOpen}
-                            aria-controls="mobile-menu"
-                            style={{ color: 'var(--color-text)' }}
-                        >
-                            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-                        </button>
+                    {/* CTA phone pill */}
+                    {/*<span className="hidden lg:flex items-center">
+                        <Button href="tel:3033244895" className="flex-shrink-0 whitespace-nowrap">
+                            Call: 303-324-4895
+                        </Button>
+                    </span>*/}
+
+                    {/* Mobile hamburger */}
+                    <button
+                        className="lg:hidden text-cream/70 hover:text-gold transition-colors duration-200 p-2"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={menuOpen}
+                    >
+                        {menuOpen ? <X size={22} /> : <Menu size={22} />}
+                    </button>
+                </div>
+
+                {/* Mobile dropdown */}
+                {menuOpen && (
+                    <div
+                        className="lg:hidden absolute top-full left-0 right-0 border-t border-white/10 px-6 py-6"
+                        style={{ backgroundColor: 'rgba(30, 30, 25, 0.98)', backdropFilter: 'blur(16px)' }}
+                    >
+                        <ul className="flex flex-col gap-1">
+                            {NAV_LINKS.map((link) =>
+                                <li key={link.label}>
+                                    <Link
+                                        to={link.to}
+                                        className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-3 transition-colors duration-200"
+                                        onClick={() => setMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            )}
+                        </ul>
+                        <div className="mt-4 flex items-center justify-center">
+                            <Button href="tel:3033244895" className="w-full">
+                                Call: 303-324-4895
+                            </Button>
+                        </div>
                     </div>
-                </div>
-
-                {/* Mobile menu */}
-                <div
-                    id="mobile-menu"
-                    className="lg:hidden overflow-hidden transition-all duration-300"
-                    style={{
-                        maxHeight: menuOpen ? '420px' : '0',
-                        background: 'rgba(10,10,10,0.98)',
-                        borderTop: menuOpen ? '1px solid rgba(201,168,76,0.1)' : 'none',
-                    }}
-                    aria-hidden={!menuOpen}
-                >
-                    <ul className="list-none m-0 p-0 px-4 py-3 flex flex-col gap-1" role="list">
-                        {navLinks.map(({ label, path, isExternal }) => (
-                            <li key={path}>
-                                {isExternal ? (
-                                    <a
-                                        href={path}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block px-4 py-3 rounded font-medium transition-colors duration-200 font-body"
-                                        style={{
-                                            color: 'var(--color-text)',
-                                            background: 'transparent',
-                                        }}
-                                        tabIndex={menuOpen ? 0 : -1}
-                                    >
-                                        {label}
-                                    </a>
-                                ) : (
-                                    <Link
-                                        to={path}
-                                        className="block px-4 py-3 rounded font-medium transition-colors duration-200 font-body"
-                                        style={{
-                                            color: isActive(path) ? 'var(--color-accent)' : 'var(--color-text)',
-                                            background: isActive(path) ? 'rgba(201,168,76,0.08)' : 'transparent',
-                                        }}
-                                        tabIndex={menuOpen ? 0 : -1}
-                                        aria-current={isActive(path) ? 'page' : undefined}
-                                    >
-                                        {label}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
-                        <li className="pt-2 pb-3">
-                            <a
-                                href="https://docs.google.com/forms/d/e/1FAIpQLSdwHgYmBAiEpIEYMQETjLNLyoGOZvk_SUsQn_iL70zVVFS7DQ/viewform?usp=sf_link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn-primary w-full text-center justify-center"
-                                tabIndex={menuOpen ? 0 : -1}
-                            >
-                                Try a Free Class
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                )}
             </nav>
         </>
     )

@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #0a0a0a;
-  --color-surface: #141414;
-  --color-surface-2: #1e1e1e;
-  --color-border: #2a2a2a;
-  --color-accent: #c9a84c;
-  --color-accent-light: #e2c97e;
-  --color-accent-dark: #9a7b2c;
-  --color-text: #f5efe6;
-  --color-text-muted: #e8ddd0;
+  --color-bg: #0D0D0B;
+  --color-surface: #161612;
+  --color-surface-2: #1E1E19;
+  --color-border: rgba(196, 154, 60, 0.18);
+  --color-accent: #C49A3C;
+  --color-accent-light: #D4AE5C;
+  --color-accent-dark: #9A7828;
+  --color-text: #EDE8DC;
+  --color-text-muted: #7A7568;
 }
 
 * {
@@ -26,7 +26,8 @@ body {
   margin: 0;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Outfit', system-ui, sans-serif;
+  font-family: 'Jost', system-ui, sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -156,15 +157,15 @@ body::before {
   background: var(--color-accent);
   color: var(--color-bg);
   font-weight: 500;
-  font-family: 'Outfit', sans-serif;
-  padding: 0.75rem 2rem;
+  font-family: 'Jost', sans-serif;
+  padding: 1.05rem 2.6rem;
   border: 1px solid var(--color-accent);
   cursor: pointer;
   transition: background 0.2s, transform 0.15s, color 0.2s;
-  font-size: 0.95rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 0;
+  letter-spacing: 0.35em;
+  border-radius: 2px;
 }
 
 .btn-primary:hover {
@@ -181,16 +182,16 @@ body::before {
   background: transparent;
   color: var(--color-accent);
   font-weight: 500;
-  font-family: 'Outfit', sans-serif;
-  padding: 0.75rem 2rem;
+  font-family: 'Jost', sans-serif;
+  padding: 1.05rem 2.6rem;
   text-decoration: none;
   border: 1px solid var(--color-accent);
   cursor: pointer;
   transition: background 0.2s, color 0.2s, transform 0.15s;
-  font-size: 0.95rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-radius: 0;
+  letter-spacing: 0.35em;
+  border-radius: 2px;
 }
 
 .btn-outline:hover {

@@ -33,7 +33,7 @@ export default function Registration() {
     }, [])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
+        <div className="bg-bg">
             <div className="page-banner">
                 <h1>Registration & Parent Portal</h1>
                 <p>New families and returning families — start here.</p>
@@ -44,21 +44,20 @@ export default function Registration() {
                     {/* New families */}
                     <article className="reg-card card p-8 flex flex-col" aria-labelledby="new-reg-heading">
                         <div className="flex items-center gap-3 mb-5">
-                            <div className="w-12 h-12 rounded-full flex items-center justify-center"
-                                style={{ background: 'rgba(201,168,76,0.15)' }}>
-                                <UserPlus size={22} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/15">
+                                <UserPlus size={22} className="text-accent" aria-hidden="true" />
                             </div>
                             <div>
-                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5"
-                                    style={{ color: 'var(--color-accent)' }}>New Students</span>
-                                <h2 id="new-reg-heading" className="font-display text-2xl font-light m-0"
-                                    style={{ color: 'var(--color-accent)' }}>
+                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5 text-accent">
+                                    New Students
+                                </span>
+                                <h2 id="new-reg-heading" className="font-display text-2xl font-light m-0 text-accent">
                                     Registration
                                 </h2>
                             </div>
                         </div>
-                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body" style={{ color: 'var(--color-text-muted)' }}>
-                            If you are enrolling for the <strong style={{ color: 'var(--color-text)' }}>first time</strong>, click below
+                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body text-text-muted">
+                            If you are enrolling for the <strong className="text-text-main">first time</strong>, click below
                             to set up your family information. You'll be able to enroll in classes during the registration process.
                         </p>
                         <a
@@ -76,21 +75,20 @@ export default function Registration() {
                     {/* Existing families */}
                     <article className="reg-card card p-8 flex flex-col" aria-labelledby="portal-heading">
                         <div className="flex items-center gap-3 mb-5">
-                            <div className="w-12 h-12 rounded-full flex items-center justify-center"
-                                style={{ background: 'rgba(201,168,76,0.15)' }}>
-                                <LayoutDashboard size={22} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
+                            <div className="w-12 h-12 rounded-full flex items-center justify-center bg-accent/15">
+                                <LayoutDashboard size={22} className="text-accent" aria-hidden="true" />
                             </div>
                             <div>
-                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5"
-                                    style={{ color: 'var(--color-accent)' }}>Existing Families</span>
-                                <h2 id="portal-heading" className="font-display text-2xl font-light m-0"
-                                    style={{ color: 'var(--color-accent)' }}>
+                                <span className="text-xs font-semibold tracking-widest uppercase font-body block mb-0.5 text-accent">
+                                    Existing Families
+                                </span>
+                                <h2 id="portal-heading" className="font-display text-2xl font-light m-0 text-accent">
                                     Parent Portal
                                 </h2>
                             </div>
                         </div>
-                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body" style={{ color: 'var(--color-text-muted)' }}>
-                            If you have <strong style={{ color: 'var(--color-text)' }}>previously registered</strong>, log in to the
+                        <p className="text-sm leading-relaxed mb-6 flex-1 font-body text-text-muted">
+                            If you have <strong className="text-text-main">previously registered</strong>, log in to the
                             Parent Portal to edit contact info, view invoices, payment history, and register for new classes.
                         </p>
                         <a
@@ -107,8 +105,8 @@ export default function Registration() {
                 </div>
 
                 {/* Notes */}
-                <div className="card p-6" style={{ background: 'rgba(201,168,76,0.05)' }}>
-                    <h3 className="font-display text-lg font-light mb-3" style={{ color: 'var(--color-accent)' }}>
+                <div className="card p-6 bg-accent/5">
+                    <h3 className="font-display text-lg font-light mb-3 text-accent">
                         Enrollment Notes
                     </h3>
                     <ul className="list-none m-0 p-0 space-y-2" role="list">
@@ -118,9 +116,8 @@ export default function Registration() {
                             'If you have any questions or concerns, please do not hesitate to contact us.',
                         ].map((note, i) => (
                             <li key={i} className="flex items-start gap-3">
-                                <ChevronRight size={14} className="mt-0.5 flex-shrink-0"
-                                    style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                                <span className="text-sm leading-relaxed font-body" style={{ color: 'var(--color-text-muted)' }}>
+                                <ChevronRight size={14} className="mt-0.5 flex-shrink-0 text-accent" aria-hidden="true" />
+                                <span className="text-sm leading-relaxed font-body text-text-muted">
                                     {note}
                                 </span>
                             </li>

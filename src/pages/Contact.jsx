@@ -46,7 +46,7 @@ export default function Contact() {
     }, [])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
+        <div className="bg-bg">
             <div className="page-banner">
                 <h1>Say Hello</h1>
                 <p>We'd love to hear from you. Reach out with any questions.</p>
@@ -57,24 +57,25 @@ export default function Contact() {
                     {/* Contact info */}
                     <div className="space-y-5">
                         <article className="contact-block card p-6" aria-labelledby="studio-address">
-                            <h2 id="studio-address" className="font-display text-xl font-light mb-4"
-                                style={{ color: 'var(--color-accent)' }}>Studio Location</h2>
-                            <address style={{ fontStyle: 'normal' }}>
+                            <h2 id="studio-address" className="font-display text-xl font-light mb-4 text-accent">
+                                Studio Location
+                            </h2>
+                            <address className="not-italic">
                                 <div className="flex items-start gap-3 mb-4">
-                                    <MapPin size={18} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
+                                    <MapPin size={18} className="mt-0.5 flex-shrink-0 text-accent" aria-hidden="true" />
                                     <div>
-                                        <p className="text-sm font-semibold mb-1 m-0" style={{ color: 'var(--color-text)' }}>Main Studio</p>
-                                        <p className="text-sm m-0" style={{ color: 'var(--color-text-muted)' }}>
+                                        <p className="text-sm font-semibold mb-1 m-0 text-text-main">Main Studio</p>
+                                        <p className="text-sm m-0 text-text-muted">
                                             1515 Main Street (North Entrance)<br />
                                             Longmont, CO 80501
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3 mb-4">
-                                    <MapPin size={18} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--color-text-muted)' }} aria-hidden="true" />
+                                    <MapPin size={18} className="mt-0.5 flex-shrink-0 text-text-muted" aria-hidden="true" />
                                     <div>
-                                        <p className="text-sm font-semibold mb-1 m-0" style={{ color: 'var(--color-text)' }}>Mailing Address</p>
-                                        <p className="text-sm m-0" style={{ color: 'var(--color-text-muted)' }}>
+                                        <p className="text-sm font-semibold mb-1 m-0 text-text-main">Mailing Address</p>
+                                        <p className="text-sm m-0 text-text-muted">
                                             1750 Prairie Trail Dr.<br />
                                             Loveland, CO 80537
                                         </p>
@@ -84,25 +85,24 @@ export default function Contact() {
                         </article>
 
                         <article className="contact-block card p-6" aria-labelledby="contact-details">
-                            <h2 id="contact-details" className="font-display text-xl font-light mb-4"
-                                style={{ color: 'var(--color-accent)' }}>Registration Contact</h2>
-                            <p className="text-sm font-medium mb-3 font-body" style={{ color: 'var(--color-text)' }}>
+                            <h2 id="contact-details" className="font-display text-xl font-light mb-4 text-accent">
+                                Registration Contact
+                            </h2>
+                            <p className="text-sm font-medium mb-3 font-body text-text-main">
                                 Susannah Ruehlen
                             </p>
                             <ul className="list-none m-0 p-0 space-y-3" role="list">
                                 <li>
                                     <a href="tel:3033244895"
-                                        className="flex items-center gap-3 text-sm transition-colors duration-200 group font-body"
-                                        style={{ color: 'var(--color-text-muted)' }}>
-                                        <Phone size={16} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                                        <span className="group-hover:underline" style={{ color: 'inherit' }}>303-324-4895</span>
+                                        className="flex items-center gap-3 text-sm transition-colors duration-200 group font-body text-text-muted">
+                                        <Phone size={16} className="text-accent" aria-hidden="true" />
+                                        <span className="group-hover:underline text-inherit">303-324-4895</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="mailto:susannahirishdance@gmail.com"
-                                        className="flex items-center gap-3 text-sm transition-colors duration-200 group font-body break-all"
-                                        style={{ color: 'var(--color-text-muted)' }}>
-                                        <Mail size={16} className="flex-shrink-0" style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
+                                        className="flex items-center gap-3 text-sm transition-colors duration-200 group font-body break-all text-text-muted">
+                                        <Mail size={16} className="flex-shrink-0 text-accent" aria-hidden="true" />
                                         <span className="group-hover:underline">susannahirishdance@gmail.com</span>
                                     </a>
                                 </li>
@@ -124,16 +124,16 @@ export default function Contact() {
 
                     {/* Contact form */}
                     <div className="contact-block card p-8">
-                        <h2 className="font-display text-2xl font-light mb-6" style={{ color: 'var(--color-accent)' }}>
+                        <h2 className="font-display text-2xl font-light mb-6 text-accent">
                             Send a Message
                         </h2>
                         {submitted ? (
                             <div className="text-center py-8">
                                 <p className="text-2xl mb-3" aria-live="polite">✉️</p>
-                                <p className="font-display text-xl font-light mb-2" style={{ color: 'var(--color-accent)' }}>
+                                <p className="font-display text-xl font-light mb-2 text-accent">
                                     Thanks for reaching out!
                                 </p>
-                                <p className="text-sm font-body" style={{ color: 'var(--color-text-muted)' }}>
+                                <p className="text-sm font-body text-text-muted">
                                     We'll get back to you as soon as possible.
                                 </p>
                             </div>
@@ -141,8 +141,7 @@ export default function Contact() {
                             <form onSubmit={handleSubmit} noValidate aria-label="Contact form">
                                 <div className="space-y-5">
                                     <div>
-                                        <label htmlFor="contact-name" className="block text-sm font-medium mb-1.5 font-body"
-                                            style={{ color: 'var(--color-text)' }}>
+                                        <label htmlFor="contact-name" className="block text-sm font-medium mb-1.5 font-body text-text-main">
                                             Your Name <span aria-hidden="true">*</span>
                                         </label>
                                         <input
@@ -154,20 +153,11 @@ export default function Contact() {
                                             value={formState.name}
                                             onChange={handleChange}
                                             placeholder="Jane Smith"
-                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200"
-                                            style={{
-                                                background: 'var(--color-surface-2)',
-                                                border: '1px solid rgba(201,168,76,0.2)',
-                                                color: 'var(--color-text)',
-                                                outline: 'none',
-                                            }}
-                                            onFocus={e => e.target.style.borderColor = 'var(--color-accent)'}
-                                            onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200 bg-surface-2 border border-accent/20 text-text-main outline-none focus:border-accent"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="contact-email" className="block text-sm font-medium mb-1.5 font-body"
-                                            style={{ color: 'var(--color-text)' }}>
+                                        <label htmlFor="contact-email" className="block text-sm font-medium mb-1.5 font-body text-text-main">
                                             Email Address <span aria-hidden="true">*</span>
                                         </label>
                                         <input
@@ -179,20 +169,11 @@ export default function Contact() {
                                             value={formState.email}
                                             onChange={handleChange}
                                             placeholder="jane@example.com"
-                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200"
-                                            style={{
-                                                background: 'var(--color-surface-2)',
-                                                border: '1px solid rgba(201,168,76,0.2)',
-                                                color: 'var(--color-text)',
-                                                outline: 'none',
-                                            }}
-                                            onFocus={e => e.target.style.borderColor = 'var(--color-accent)'}
-                                            onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200 bg-surface-2 border border-accent/20 text-text-main outline-none focus:border-accent"
                                         />
                                     </div>
                                     <div>
-                                        <label htmlFor="contact-message" className="block text-sm font-medium mb-1.5 font-body"
-                                            style={{ color: 'var(--color-text)' }}>
+                                        <label htmlFor="contact-message" className="block text-sm font-medium mb-1.5 font-body text-text-main">
                                             Message <span aria-hidden="true">*</span>
                                         </label>
                                         <textarea
@@ -203,15 +184,7 @@ export default function Contact() {
                                             value={formState.message}
                                             onChange={handleChange}
                                             placeholder="Tell us about yourself or ask a question…"
-                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200 resize-none"
-                                            style={{
-                                                background: 'var(--color-surface-2)',
-                                                border: '1px solid rgba(201,168,76,0.2)',
-                                                color: 'var(--color-text)',
-                                                outline: 'none',
-                                            }}
-                                            onFocus={e => e.target.style.borderColor = 'var(--color-accent)'}
-                                            onBlur={e => e.target.style.borderColor = 'rgba(201,168,76,0.2)'}
+                                            className="w-full px-4 py-3 rounded-lg text-sm font-body transition-colors duration-200 resize-none bg-surface-2 border border-accent/20 text-text-main outline-none focus:border-accent"
                                         />
                                     </div>
                                     <button
@@ -230,17 +203,15 @@ export default function Contact() {
 
                 {/* Map embed */}
                 <div className="contact-block mt-8">
-                    <div className="relative w-full aspect-video min-h-[400px] border border-[rgba(201,168,76,0.15)] overflow-hidden rounded-xl">
+                    <div className="relative w-full aspect-video min-h-[400px] border border-accent/15 overflow-hidden rounded-xl">
                         <iframe
                             title="Avoca Irish Dance Studio Location"
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3048.0682610470794!2d-105.1031289!3d40.1852943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876bf96dfc846fbf%3A0xe69aec57c93c6628!2sAvoca%20Irish%20Dance%20Academy!5e0!3m2!1sen!2sus!4v1772733554788!5m2!1sen!2sus"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg) saturate(0.3)' }}
+                            className="absolute inset-0 w-full h-full bg-[#e5e3df]"
+                            style={{ filter: 'invert(0.9) hue-rotate(180deg) saturate(0.3)' }}
                             allowFullScreen=""
                             loading="lazy"
                             referrerPolicy="no-referrer-when-downgrade"
-                            className="absolute inset-0 w-full h-full bg-[#e5e3df]"
                         />
                     </div>
                 </div>

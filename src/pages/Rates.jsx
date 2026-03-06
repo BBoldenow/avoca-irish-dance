@@ -40,7 +40,7 @@ export default function Rates() {
     }, [])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
+        <div className="bg-bg">
             <div className="page-banner">
                 <h1>Rates & Tuition</h1>
                 <p>Competitive pricing for a world-class Irish dance experience.</p>
@@ -50,12 +50,10 @@ export default function Rates() {
                 {/* How tuition works */}
                 <article className="rate-block card p-8" aria-labelledby="tuition-heading">
                     <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 rounded-full flex items-center justify-center"
-                            style={{ background: 'rgba(201,168,76,0.15)' }}>
-                            <DollarSign size={20} style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-accent/15">
+                            <DollarSign size={20} className="text-accent" aria-hidden="true" />
                         </div>
-                        <h2 id="tuition-heading" className="font-display text-2xl font-light m-0"
-                            style={{ color: 'var(--color-accent)' }}>
+                        <h2 id="tuition-heading" className="font-display text-2xl font-light m-0 text-accent">
                             How Tuition Works
                         </h2>
                     </div>
@@ -68,9 +66,8 @@ export default function Rates() {
                             'There are no refunds for missed classes.',
                         ].map((item, i) => (
                             <li key={i} className="flex items-start gap-3">
-                                <ChevronRight size={16} className="mt-0.5 flex-shrink-0"
-                                    style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                                <span className="text-sm leading-relaxed font-body" style={{ color: 'var(--color-text-muted)' }}>
+                                <ChevronRight size={16} className="mt-0.5 flex-shrink-0 text-accent" aria-hidden="true" />
+                                <span className="text-sm leading-relaxed font-body text-text-muted">
                                     {item}
                                 </span>
                             </li>
@@ -80,11 +77,10 @@ export default function Rates() {
 
                 {/* Family discounts */}
                 <article className="rate-block card p-8" aria-labelledby="family-discount-heading">
-                    <h2 id="family-discount-heading" className="font-display text-2xl font-light mb-5"
-                        style={{ color: 'var(--color-accent)' }}>
+                    <h2 id="family-discount-heading" className="font-display text-2xl font-light mb-5 text-accent">
                         Family Discounts
                     </h2>
-                    <p className="text-sm mb-6 font-body" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="text-sm mb-6 font-body text-text-muted">
                         Discounts apply to the child of equal or lesser tuition rate:
                     </p>
                     <div className="grid grid-cols-3 gap-4" role="table" aria-label="Family discount rates">
@@ -93,12 +89,10 @@ export default function Rates() {
                                 <div
                                     key={child}
                                     role="cell"
-                                    className="flex flex-col items-center justify-center p-5 rounded-lg text-center"
-                                    style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.2)' }}
+                                    className="flex flex-col items-center justify-center p-5 rounded-lg text-center bg-accent/5 border border-accent/20"
                                 >
-                                    <span className="text-2xl font-display font-light mb-1"
-                                        style={{ color: 'var(--color-accent)' }}>{pct}</span>
-                                    <span className="text-xs font-body" style={{ color: 'var(--color-text-muted)' }}>{child}</span>
+                                    <span className="text-2xl font-display font-light mb-1 text-accent">{pct}</span>
+                                    <span className="text-xs font-body text-text-muted">{child}</span>
                                 </div>
                             ))}
                         </div>
@@ -107,7 +101,7 @@ export default function Rates() {
 
                 {/* CTA */}
                 <div className="rate-block text-center pt-4">
-                    <p className="mb-6 font-body" style={{ color: 'var(--color-text-muted)' }}>
+                    <p className="mb-6 font-body text-text-muted">
                         Have questions about tuition? We'd love to help.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">

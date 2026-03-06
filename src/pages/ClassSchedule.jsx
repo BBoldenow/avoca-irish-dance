@@ -74,7 +74,7 @@ export default function ClassSchedule() {
     }, [])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
+        <div className="bg-bg">
             <div className="page-banner">
                 <h1>Class Schedule</h1>
                 <p>Classes offered Monday through Thursday at our Longmont studio.</p>
@@ -86,22 +86,18 @@ export default function ClassSchedule() {
                         <article key={day} className="day-card card p-6" aria-labelledby={`day-${day.replace(/\s/g, '-')}`}>
                             <h2
                                 id={`day-${day.replace(/\s/g, '-')}`}
-                                className="font-display text-xl font-light mb-4 pb-3"
-                                style={{
-                                    color: 'var(--color-accent)',
-                                    borderBottom: '1px solid rgba(201,168,76,0.2)',
-                                }}
+                                className="font-display text-xl font-light mb-4 pb-3 text-accent border-b border-accent/20"
                             >
                                 {day}
                             </h2>
                             <ul className="list-none m-0 p-0 space-y-3" role="list">
                                 {classes.map((cls, i) => (
                                     <li key={i} className="flex flex-col gap-1">
-                                        <span className="text-sm font-medium font-body" style={{ color: 'var(--color-text)' }}>
+                                        <span className="text-sm font-medium font-body text-text-main">
                                             {cls.name}
                                         </span>
                                         {cls.time && (
-                                            <span className="flex items-center gap-1.5 text-xs font-body" style={{ color: 'var(--color-text-muted)' }}>
+                                            <span className="flex items-center gap-1.5 text-xs font-body text-text-muted">
                                                 <Clock size={11} aria-hidden="true" />
                                                 {cls.time}
                                             </span>
@@ -114,10 +110,10 @@ export default function ClassSchedule() {
                 </div>
 
                 {/* Note */}
-                <div className="card p-6 mb-8" style={{ background: 'rgba(201,168,76,0.06)' }}>
+                <div className="card p-6 mb-8 bg-accent/5">
                     <div className="flex items-start gap-3">
-                        <Users size={18} className="mt-0.5 flex-shrink-0" style={{ color: 'var(--color-accent)' }} aria-hidden="true" />
-                        <p className="text-sm leading-relaxed m-0 font-body" style={{ color: 'var(--color-text-muted)' }}>
+                        <Users size={18} className="mt-0.5 flex-shrink-0 text-accent" aria-hidden="true" />
+                        <p className="text-sm leading-relaxed m-0 font-body text-text-muted">
                             All classes are held at our Main Studio at 1515 Main Street (North Entrance), Longmont, CO 80501.
                             Not sure which class is right for your dancer? Contact us and we'll help you find the perfect fit.
                         </p>

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
 import { Award } from 'lucide-react'
 import susannahImg from '../assets/images/susannah.avif'
+import SisterSchools from '../components/SisterSchools.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -61,7 +62,7 @@ export default function About() {
     }, [])
 
     return (
-        <div style={{ background: 'var(--color-bg)' }}>
+        <div className="bg-bg">
             {/* Banner */}
             <div className="page-banner" role="banner">
                 <h1>Our Instructors</h1>
@@ -86,29 +87,26 @@ export default function About() {
                                     />
                                 ) : (
                                     <div
-                                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
-                                        style={{ background: 'rgba(201,168,76,0.15)' }}
+                                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 bg-accent/15"
                                         aria-hidden="true"
                                     >
-                                        <Award size={22} style={{ color: 'var(--color-accent)' }} />
+                                        <Award size={22} className="text-accent" />
                                     </div>
                                 )}
                                 <div>
                                     <h2
                                         id={`instructor-${inst.name.replace(/\s/g, '-')}`}
-                                        className="font-display text-2xl font-light m-0 mb-1"
-                                        style={{ color: 'var(--color-accent)' }}
+                                        className="font-display text-2xl font-light m-0 mb-1 text-accent"
                                     >
                                         {inst.name}
                                     </h2>
-                                    <p className="text-sm font-medium m-0 font-body" style={{ color: 'var(--color-text-muted)' }}>
+                                    <p className="text-sm font-medium m-0 font-body text-text-muted">
                                         {inst.title}
                                     </p>
                                 </div>
                             </div>
                             {inst.bio.split('\n\n').map((para, i) => (
-                                <p key={i} className="text-sm leading-relaxed mb-3 last:mb-0 font-body"
-                                    style={{ color: 'var(--color-text-muted)' }}>
+                                <p key={i} className="text-sm leading-relaxed mb-3 last:mb-0 font-body text-text-muted">
                                     {para}
                                 </p>
                             ))}
@@ -118,82 +116,9 @@ export default function About() {
             </section>
 
             {/* Sister Schools */}
-            <section
-                className="relative overflow-hidden"
-                style={{ borderTop: '1px solid rgba(201,168,76,0.1)' }}
-                aria-labelledby="sister-schools-heading"
-            >
-                {/* Layered background */}
-                <div className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'linear-gradient(135deg, #111111 0%, #0d0d0d 40%, #0f1108 100%)' }} />
-                <div className="absolute inset-0 pointer-events-none"
-                    style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.04) 0%, transparent 70%)' }} />
-                <div className="absolute top-0 left-0 right-0 h-px pointer-events-none"
-                    style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent)' }} />
-                <div className="absolute bottom-0 left-0 right-0 h-px pointer-events-none"
-                    style={{ background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent)' }} />
-
-                <div className="relative z-10 section-pad max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-center">
-
-                        {/* Stat pillars */}
-                        <div className="lg:col-span-2 grid grid-cols-2 gap-px" style={{ background: 'rgba(201,168,76,0.1)' }}>
-                            {[
-                                { value: '28+', label: 'Years Combined\nExperience' },
-                                { value: '2', label: 'ADCRG\nCertified Schools' },
-                                { value: 'CO', label: 'Colorado Front\nRange Coverage' },
-                                { value: '∞', label: 'Passion for\nIrish Dance' },
-                            ].map(({ value, label }) => (
-                                <div key={value} className="flex flex-col items-center justify-center p-8 text-center"
-                                    style={{ background: 'rgba(14,14,14,0.7)' }}>
-                                    <span className="font-display text-4xl md:text-5xl font-light mb-2" style={{ color: 'var(--color-accent)' }}>{value}</span>
-                                    <span className="font-body text-center whitespace-pre-line leading-relaxed"
-                                        style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(245,239,230,0.4)' }}>
-                                        {label}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Content */}
-                        <div className="lg:col-span-3 text-center lg:text-left">
-                            <div className="inline-flex items-center gap-2.5 mb-6">
-                                <div className="w-4 h-px" style={{ background: 'rgba(201,168,76,0.5)' }} />
-                                <span className="font-body" style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.35em', color: 'var(--color-accent)' }}>
-                                    Partnership Announcement
-                                </span>
-                                <div className="w-4 h-px" style={{ background: 'rgba(201,168,76,0.5)' }} />
-                            </div>
-
-                            <h2 id="sister-schools-heading" className="font-display text-3xl sm:text-4xl lg:text-5xl font-light mb-6"
-                                style={{ color: 'var(--color-text)', lineHeight: 1.2 }}>
-                                Sister Schools with{' '}
-                                <span className="gradient-text">Connolly Irish Dance</span>
-                            </h2>
-
-                            <p className="text-sm md:text-base leading-relaxed mb-8 font-body max-w-2xl lg:max-w-none"
-                                style={{ color: 'var(--color-text-muted)', fontWeight: 300 }}>
-                                Announced August 2, 2022 — Avoca Irish Dance Academy (Longmont, CO) taught by Susannah
-                                Ruehlen ADCRG and the Connolly Academy of Irish Dance (Lakewood, CO) taught by Louise
-                                Connolly ADCRG have joined as Sister Schools. Each school has operated separately with
-                                great success for 14+ years, and together they bring shared passion, values, and a
-                                commitment to excellence across the Colorado Front Range.
-                            </p>
-
-                            <a
-                                href="https://connollyirishdance.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 btn-outline"
-                                aria-label="Visit the Connolly Irish Dance Academy website"
-                            >
-                                <span>Visit Connolly Irish Dance</span>
-                                <Award size={14} aria-hidden="true" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div className="section">
+                <SisterSchools />
+            </div>
         </div>
     )
 }

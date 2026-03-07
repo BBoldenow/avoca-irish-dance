@@ -1,0 +1,1 @@
+import{r as e}from"./vendor-react-DqqvS_hN.js";function i(r,s=50){const[n,f]=e.useState([]),[o,a]=e.useState(!0),[u,c]=e.useState(null);return e.useEffect(()=>{let t=!0;return(async()=>{{t&&(c("No calendar ID provided."),a(!1));return}})(),()=>{t=!1}},[r,s]),{events:n,loading:o,error:u}}export{i as u};

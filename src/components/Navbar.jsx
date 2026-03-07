@@ -13,9 +13,9 @@ const NAV_LINKS = [
 ]
 
 const ABOUT_LINKS = [
-    { label: 'Core Values', to: '/about/core-values' },
     { label: 'Instructors', to: '/about/instructors' },
     { label: 'Rates', to: '/rates' },
+    { label: 'Core Values', to: '/about/core-values' },
 ]
 
 const SCHEDULE_LINKS = [

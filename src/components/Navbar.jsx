@@ -6,7 +6,6 @@ import Button from './ui/Button.jsx'
 
 const NAV_LINKS = [
     { label: 'Home', to: '/' },
-    { label: 'Rates', to: '/rates' },
     { label: 'Gallery', to: '/gallery' },
     { label: 'Parent Portal', to: '/registration' },
     { label: 'FAQ', to: '/faq' },
@@ -16,6 +15,7 @@ const NAV_LINKS = [
 const ABOUT_LINKS = [
     { label: 'Core Values', to: '/about/core-values' },
     { label: 'Instructors', to: '/about/instructors' },
+    { label: 'Rates', to: '/rates' },
 ]
 
 const SCHEDULE_LINKS = [
@@ -120,15 +120,6 @@ export default function Navbar() {
                                 </ul>
                             </div>
                         </li>
-                        <li>
-                            <Link
-                                to="/rates"
-                                className={`nav-link font-body text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 relative group ${isActive('/rates') ? 'text-gold' : 'text-cream/60 hover:text-gold'}`}
-                            >
-                                Rates
-                                <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${isActive('/rates') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                            </Link>
-                        </li>
                         {/* Schedule & Events Dropdown */}
                         <li className="relative group">
                             <button className="nav-link font-body text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 relative text-cream/60 hover:text-gold flex items-center gap-1">
@@ -150,7 +141,7 @@ export default function Navbar() {
                                 </ul>
                             </div>
                         </li>
-                        {NAV_LINKS.slice(3).map((link) => (
+                        {NAV_LINKS.slice(1).map((link) => (
                             <li key={link.label}>
                                 <Link
                                     to={link.to}
@@ -215,15 +206,6 @@ export default function Navbar() {
                                 </ul>
                             </li>
 
-                            <li>
-                                <Link
-                                    to="/rates"
-                                    className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-3 transition-colors duration-200"
-                                    onClick={() => setMenuOpen(false)}
-                                >
-                                    Rates
-                                </Link>
-                            </li>
 
                             {/* Schedule & Events Mobile */}
                             <li className="py-2">
@@ -243,7 +225,7 @@ export default function Navbar() {
                                 </ul>
                             </li>
 
-                            {NAV_LINKS.slice(2).map((link) => (
+                            {NAV_LINKS.slice(1).map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         to={link.to}

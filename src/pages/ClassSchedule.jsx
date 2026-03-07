@@ -29,17 +29,22 @@ export default function ClassSchedule() {
         return nd.getTime()
     }
 
-    const weeklySchedule = useMemo(() => {
+    const { startDate, weeklySchedule } = useMemo(() => {
         const scheduleByDay = {}
-        if (!classEvents || classEvents.length === 0) return scheduleByDay
+        if (!classEvents || classEvents.length === 0) return { startDate: selectedDate, weeklySchedule: scheduleByDay }
 
-        const startDate = new Date(selectedDate)
-        startDate.setHours(0, 0, 0, 0)
+        const anchorDate = new Date(selectedDate)
+        anchorDate.setHours(0, 0, 0, 0)
 
-        const endDate = new Date(startDate)
+        // Anchor to Monday (ISO week start)
+        const day = anchorDate.getDay()
+        const diff = day === 0 ? 6 : day - 1
+        anchorDate.setDate(anchorDate.getDate() - diff)
+
+        const endDate = new Date(anchorDate)
         endDate.setDate(endDate.getDate() + 7)
 
-        const upcomingClasses = classEvents.filter(ev => ev.start >= startDate && ev.start < endDate)
+        const upcomingClasses = classEvents.filter(ev => ev.start >= anchorDate && ev.start < endDate)
 
         upcomingClasses.forEach(ev => {
             const dayName = new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric' }).format(ev.start)
@@ -47,7 +52,7 @@ export default function ClassSchedule() {
             scheduleByDay[dayName].push(ev)
         })
 
-        return scheduleByDay
+        return { startDate: anchorDate, weeklySchedule: scheduleByDay }
     }, [classEvents, selectedDate])
 
     const activeDays = Object.keys(weeklySchedule).sort((a, b) => {
@@ -101,7 +106,7 @@ export default function ClassSchedule() {
                     <p className="font-display text-2xl font-light text-cream/60 mb-2">No upcoming classes</p>
                     <p className="font-body text-cream/50 font-light text-sm">
                         There are no classes scheduled for the week of{' '}
-                        {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(selectedDate)}.
+                        {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(startDate)}.
                     </p>
                 </div>
             )}
@@ -243,7 +248,7 @@ export default function ClassSchedule() {
                         {/* Small "back to calendar" hint */}
                         <div className="flex items-center justify-between mb-4">
                             <p className="font-body text-cream/50 text-xs tracking-wide uppercase">
-                                Week of {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(selectedDate)}
+                                Week of {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' }).format(startDate)}
                             </p>
                             <button
                                 onClick={() => setMobileTab('calendar')}
@@ -271,6 +276,7 @@ export default function ClassSchedule() {
                                         prev2Label={null}
                                         next2Label={null}
                                         minDetail="month"
+                                        calendarType="iso8601"
                                     />
                                 </div>
                             </div>

@@ -18,7 +18,7 @@ export default defineConfig({
             avif: { quality: 70 },
         })
     ],
-    base: process.env.GITHUB_REPO_NAME ? `/${process.env.GITHUB_REPO_NAME}/` : '/',
+    base: '/avoca-irish-dance/',
     build: {
         rollupOptions: {
             output: {

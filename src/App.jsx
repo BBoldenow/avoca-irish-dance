@@ -12,6 +12,7 @@ const ClassSchedule = lazy(() => import('./pages/ClassSchedule.jsx'))
 const Registration = lazy(() => import('./pages/Registration.jsx'))
 const Gallery = lazy(() => import('./pages/Gallery.jsx'))
 const Feis = lazy(() => import('./pages/Feis.jsx'))
+const Events = lazy(() => import('./pages/Events.jsx'))
 const Contact = lazy(() => import('./pages/Contact.jsx'))
 
 function ScrollToTop() {
@@ -53,6 +54,7 @@ export default function App() {
                         <Route path="/registration" element={<Registration />} />
                         <Route path="/gallery" element={<Gallery />} />
                         <Route path="/feis" element={<Feis />} />
+                        <Route path="/events" element={<Events />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="*" element={<Home />} />
                     </Routes>

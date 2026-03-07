@@ -7,29 +7,73 @@ import { Plus, Minus } from 'lucide-react'
 
 const FAQ_ITEMS = [
     {
+        category: 'Getting Started',
+        question: 'Do I need any dance experience to start?',
+        answer: 'Not at all — and we mean that. Beginners are warmly welcome at every age. Introduction classes are built from the very ground up, so you\'ll never feel lost or behind. You don\'t need to know a reel from a jig. You just need to show up.'
+    },
+    {
+        category: 'Getting Started',
+        question: 'What age can kids start?',
+        answer: 'Classes are open from age 4. Little ones begin with basic movement, rhythm, and footwork in a fun, game-based environment — think tippy toes, clapping games, and lots of giggling. The goal at this stage isn\'t perfection; it\'s building a love of music and movement that lasts.'
+    },
+    {
+        category: 'Getting Started',
+        question: 'Can adults learn Irish dance?',
+        answer: 'Absolutely — and honestly, adult beginners often surprise themselves. Adults bring focus, commitment, and genuine curiosity that makes them wonderful students. Whether you\'re dancing for fitness, cultural connection, or simply because you\'ve always wanted to try, there\'s a place for you here.'
+    },
+    {
         category: 'Terminology',
         question: 'How do I pronounce "Feis"?',
-        answer: 'A "Feis" (pronounced "fesh") is a traditional Irish dance competition. The plural is "Feiseanna" (pronounced "fesh-ANA"). They range from small local events to large major championships.'
+        answer: 'A "Feis" (pronounced "fesh") is a traditional Irish dance competition, organized by age and level. The plural is "Feiseanna" (pronounced "fesh-ANA"). They range from small local events to large major championships.'
     },
     {
         category: 'Terminology',
         question: 'What is an "Oireachtas"?',
-        answer: 'The "Oireachtas" (pronounced "o-RECK-tus") refers to a regional championship. At Avoca, we prepare our dancers for these milestones with dedicated coaching and conditioning.'
+        answer: 'The "Oireachtas" (pronounced "o-RECK-tus") refers to a regional or national championship. At Avoca, we prepare our dancers for these milestones with dedicated coaching and conditioning.'
     },
     {
-        category: 'Classes',
-        question: 'What is the difference between Soft Shoes and Hard Shoes?',
-        answer: 'Soft shoes (ghillies) are flexible, leather slippers used for athletic heights and graceful movements. Hard shoes are weighted with fiberglass tips to create the powerful rhythmic sounds synonymous with Irish dance.'
+        category: 'Terminology',
+        question: 'What are "Ghillies"?',
+        answer: 'Soft shoes — called ghillies (pronounced "GILL-eez") for girls and reel shoes for boys — are lightweight leather shoes, a bit like a ballet flat. They\'re used for dances like reels and jigs, and they make soft, quiet sounds.'
     },
     {
-        category: 'Classes',
-        question: 'Can I try a class for free?',
-        answer: 'Absolutely! We offer a free trial class for all new students. It\'s the best way to experience our studio culture and see if Irish dance is the right fit for your family.'
+        category: 'Shoes & Gear',
+        question: 'What\'s the difference between soft shoes and hard shoes?',
+        answer: 'Soft shoes (ghillies) are flexible, leather slippers used for athletic heights and graceful movements. Hard shoes have fiberglass tips and heels that create a loud, rhythmic percussion — think tap shoes, but with a very different technique. All beginners start in soft shoes; hard shoes come later as your footwork develops.'
     },
     {
-        category: 'Philosophy',
-        question: 'What does "Excellent Dancers, Excellent Humans" mean?',
-        answer: 'At Avoca, we believe dance is a vehicle for character building. While we strive for technical excellence, we prioritize teaching generosity, respect, and perseverance. Our goal is to see our dancers succeed both on the stage and in life.'
+        category: 'Shoes & Gear',
+        question: 'Do I need to buy shoes right away?',
+        answer: 'No — hold off for the first few classes. Give yourself (or your child) a chance to fall in love with it first. When the time comes, we\'ll point you in the right direction for where to buy and what to look for.'
+    },
+    {
+        category: 'Progression',
+        question: 'How do dancers move up levels?',
+        answer: 'Advancement in Irish dance is based on official CLRG rules. Dancers progress through levels — Beginner, Advanced Beginner, Novice, Prizewinner, Preliminary Championship, and Open Championship — by placing in competitions. Susannah tracks each dancer\'s individual progress through their "grades" and will let you know when they are ready for the next level.'
+    },
+    {
+        category: 'History',
+        question: 'Why do Irish dancers hold their arms down?',
+        answer: (
+            <div className="space-y-4">
+                <p>It\'s one of the first things people notice — and one of the most beautiful things about the art form. There are a few reasons for this unique style:</p>
+                <ul className="list-disc pl-5 space-y-2">
+                    <li><strong>The "Dancing Through the Window" Story:</strong> Legend says that during British rule, when Irish culture was suppressed, dancers performed near windows; keeping their arms still made them look less like they were dancing to passing authorities.</li>
+                    <li><strong>Traveling Dance Masters:</strong> In the 18th century, competing dance masters developed a rigid, upright carriage as a marker of refinement and serious training.</li>
+                    <li><strong>Solo vs. Ceili:</strong> While social "Ceili" dancing uses arms freely, solo step dancing evolved to focus all artistry below the waist, creating a visual tension that makes intricate footwork even more impressive by contrast.</li>
+                </ul>
+            </div>
+        )
+    },
+    {
+        category: 'Health',
+        question: 'Is Irish dance a good workout?',
+        answer: 'It really is — and people are often caught off guard by just how much it demands. Irish dance builds cardiovascular fitness, leg strength, balance, and coordination. Championship-level dancers are serious athletes.'
+    },
+    {
+        category: 'Contact',
+        question: 'How do I get started?',
+        answer: 'Just reach out to Susannah — a call or an email is all it takes. She\'ll talk with you about your goals and find the right class. No audition, no prior experience required. Just come and give it a try.'
     }
 ]
 
@@ -55,9 +99,9 @@ function FAQItem({ item, isOpen, onClick }) {
                 className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 pb-8' : 'grid-rows-[0fr] opacity-0'}`}
             >
                 <div className="overflow-hidden">
-                    <p className="font-body text-cream/60 leading-relaxed font-light text-sm md:text-base max-w-2xl">
+                    <div className="font-body text-cream/60 leading-relaxed font-light text-sm md:text-base max-w-2xl">
                         {item.answer}
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,7 +166,7 @@ export default function FAQPage() {
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="faq-elem font-display text-3xl font-light text-cream mb-6">Still Have Questions?</h2>
                     <p className="faq-elem font-body text-cream/60 leading-relaxed font-light mb-8 max-w-xl mx-auto">
-                        We're here to help! If you have a question that isn't covered here, please reach out.
+                        We\'re here to help! If you have a question that isn\'t covered here, please reach out.
                     </p>
                     <div className="faq-elem">
                         <a

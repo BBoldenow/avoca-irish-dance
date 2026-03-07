@@ -19,7 +19,7 @@ const champSpecials = [
 ]
 
 const nonChampSpecials = [
-    'Future Champions — non-champ dancers competing at 2025 Oireachtas',
+    'Future Champions — non-champ dancers competing at Oireachtas',
     'Beginner 1/2 Masquerade Reel',
     'Novice/Prizewinner Masquerade Reel',
     'Novice/Prizewinner Boys Treble Jig Special',

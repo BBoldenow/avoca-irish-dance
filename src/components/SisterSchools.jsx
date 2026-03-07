@@ -95,11 +95,7 @@ export default function SisterSchool() {
                             </h2>
 
                             <p className="sister-elem font-body text-cream/65 text-sm md:text-base leading-relaxed font-light mb-8 max-w-2xl lg:max-w-none">
-                                We are thrilled about the association between the Connolly Academy of Irish Dance
-                                (Lakewood, CO) taught by Louise Connolly ADCRG and the Avoca Irish Dance Academy
-                                (Longmont, CO) taught by Susannah Ruehlen ADCRG. Two schools with like-minded
-                                passion and values, combining over 28 years of experience to bring the best out of
-                                our dancers across the Colorado Front Range.
+                                Avoca is proud to be sister schools with Connolly Irish Dance in Lakewood, CO. Louise Connolly ADCRG brings the same passion for excellence and the same commitment to the whole dancer that defines Avoca. Together, we combine over 28 years of experience serving the Colorado Front Range — two schools, one shared standard.
                             </p>
 
                             <Button

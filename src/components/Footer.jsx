@@ -11,6 +11,7 @@ const NAV_LINKS = [
     { label: 'Gallery', to: '/gallery' },
     { label: 'Feis', to: '/feis' },
     { label: 'Parent Portal', to: '/registration' },
+    { label: 'FAQ', to: '/faq' },
     { label: 'Contact', to: '/contact' },
 ]
 

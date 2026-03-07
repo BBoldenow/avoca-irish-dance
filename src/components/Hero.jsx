@@ -108,10 +108,7 @@ export default function Hero() {
 
                 <div className="hero-sub font-body font-light text-[0.95rem] leading-[1.85] text-cream/70 max-w-[65ch] space-y-4">
                     <p>
-                        Welcome to the Avoca Irish Dance Academy. We strive to be your dancer’s safe space and home away from home. We are invested in all our students and take a personal interest in their goals, both in dance and outside the studio.
-                    </p>
-                    <p>
-                        Our mission is simple: to create <em className="text-gold-light not-italic font-normal">excellent dancers</em> and <em className="text-gold-light not-italic font-normal">excellent humans</em>.
+                        At Avoca Irish Dance Academy, we believe a great dance studio shapes more than technique — it shapes character. Our goal is simple: to develop <em className="text-gold-light not-italic font-normal">excellent dancers</em> and <em className="text-gold-light not-italic font-normal">excellent humans</em>, in a studio where every student feels known, supported, and challenged.
                     </p>
                 </div>
 

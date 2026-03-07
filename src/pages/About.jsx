@@ -23,7 +23,7 @@ In 2009 she received her teaching certificate (TCRG) and co-founded the Moriarty
     {
         name: 'Amanda Lebeda',
         title: 'Assistant Teacher',
-        bio: `Amanda began her dancing career in 2008 as Jennifer and Susannah's very first student! She has worked hard as an Open Championship dancer with many achievements, including dancing on the Senior Ladies team and receiving 12th Place at the 2019 World Championships.
+        bio: `Amanda began her dancing career in 2008 as Susannah's very first student! She has worked hard as an Open Championship dancer with many achievements, including dancing on the Senior Ladies team and receiving 12th Place at the 2019 World Championships.
 
 Amanda has spent two summers dancing with the Riverdance Summer Camp in Boston. She has completed her 12 Grade Exams and looks forward to earning her TCRG Certification. She especially loves teaching our beginner dancers.`,
     },

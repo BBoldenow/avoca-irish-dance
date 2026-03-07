@@ -15,9 +15,9 @@ const excellentDancers = [
 ]
 
 const excellentHumans = [
-    'We teach with core values: Generosity, Respect, Responsibility, Perseverance, Service, Integrity, Humility, Loyalty, Honesty, Courage, and Gratitude.',
-    'Dancers become team players with strong work ethic, discipline, and pride.',
-    'Community service is a key element — we encourage our dancers to give back.',
+    'We teach with core values at the center of everything: generosity, respect, perseverance, integrity, and gratitude — among others.',
+    'Dancers leave Avoca as team players with strong work ethic, discipline, and a genuine sense of community.',
+    'Service is woven into our program; we believe giving back is part of what it means to be a dancer here.',
 ]
 
 export default function WhyDance() {

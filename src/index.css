@@ -93,10 +93,17 @@ body::before {
   }
 
   .section-padding {
-    @apply px-6 py-20 md:px-12 lg:px-24;
+    @apply px-6 py-12 md:py-16 md:px-12 lg:px-24;
   }
 
-  /* Gold hairline dividers */
+  .section-padding-min {
+    @apply px-6 py-6 md:px-12 lg:px-24;
+  }
+
+  .section-header-banner {
+    @apply bg-ink border-b border-gold/10 pt-32 pb-16 px-6 text-center relative overflow-hidden;
+  }
+
   .gold-rule {
     width: 100%;
     height: 1px;

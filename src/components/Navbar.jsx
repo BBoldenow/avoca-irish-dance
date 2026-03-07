@@ -6,12 +6,16 @@ import Button from './ui/Button.jsx'
 
 const NAV_LINKS = [
     { label: 'Home', to: '/' },
-    { label: 'About', to: '/about' },
     { label: 'Rates', to: '/rates' },
     { label: 'Gallery', to: '/gallery' },
     { label: 'Parent Portal', to: '/registration' },
     { label: 'FAQ', to: '/faq' },
     { label: 'Contact', to: '/contact' },
+]
+
+const ABOUT_LINKS = [
+    { label: 'Core Values', to: '/about/core-values' },
+    { label: 'Instructors', to: '/about/instructors' },
 ]
 
 const SCHEDULE_LINKS = [
@@ -95,14 +99,26 @@ export default function Navbar() {
                                 <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
                             </Link>
                         </li>
-                        <li>
-                            <Link
-                                to="/about"
-                                className={`nav-link font-body text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 relative group ${isActive('/about') ? 'text-gold' : 'text-cream/60 hover:text-gold'}`}
-                            >
+                        {/* About Dropdown */}
+                        <li className="relative group">
+                            <button className={`nav-link font-body text-[11px] uppercase tracking-[0.2em] transition-colors duration-300 relative flex items-center gap-1 ${isActive('/about') ? 'text-gold' : 'text-cream/60 hover:text-gold'}`}>
                                 About
-                                <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-300 ${isActive('/about') ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                            </Link>
+                                <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+                            </button>
+                            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-6 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300">
+                                <ul className="bg-ink/95 backdrop-blur-md border border-gold/10 p-4 flex flex-col gap-4 min-w-[180px]">
+                                    {ABOUT_LINKS.map((link) => (
+                                        <li key={link.label}>
+                                            <Link
+                                                to={link.to}
+                                                className={`block font-body text-[10px] uppercase tracking-[0.2em] transition-colors duration-300 ${isActive(link.to) ? 'text-gold' : 'text-cream/60 hover:text-gold'}`}
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </li>
                         <li>
                             <Link
@@ -172,17 +188,42 @@ export default function Navbar() {
                         style={{ backgroundColor: 'rgba(30, 30, 25, 0.98)', backdropFilter: 'blur(16px)' }}
                     >
                         <ul className="flex flex-col gap-1">
-                            {NAV_LINKS.slice(0, 3).map((link) =>
-                                <li key={link.label}>
-                                    <Link
-                                        to={link.to}
-                                        className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-3 transition-colors duration-200"
-                                        onClick={() => setMenuOpen(false)}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            )}
+                            <li>
+                                <Link
+                                    to="/"
+                                    className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-3 transition-colors duration-200"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    Home
+                                </Link>
+                            </li>
+                            {/* About Mobile Dropdown */}
+                            <li className="py-2">
+                                <span className="block font-body text-[10px] uppercase tracking-[0.3em] text-gold/50 mb-3 mt-2">About</span>
+                                <ul className="flex flex-col gap-1 pl-4 border-l border-gold/20">
+                                    {ABOUT_LINKS.map(link => (
+                                        <li key={link.label}>
+                                            <Link
+                                                to={link.to}
+                                                className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-2 transition-colors duration-200"
+                                                onClick={() => setMenuOpen(false)}
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+
+                            <li>
+                                <Link
+                                    to="/rates"
+                                    className="block font-body text-sm uppercase tracking-[0.2em] text-cream/70 hover:text-gold py-3 transition-colors duration-200"
+                                    onClick={() => setMenuOpen(false)}
+                                >
+                                    Rates
+                                </Link>
+                            </li>
 
                             {/* Schedule & Events Mobile */}
                             <li className="py-2">
@@ -202,7 +243,7 @@ export default function Navbar() {
                                 </ul>
                             </li>
 
-                            {NAV_LINKS.slice(3).map((link) =>
+                            {NAV_LINKS.slice(2).map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         to={link.to}
@@ -212,7 +253,7 @@ export default function Navbar() {
                                         {link.label}
                                     </Link>
                                 </li>
-                            )}
+                            ))}
                         </ul>
                         <div className="mt-4 flex items-center justify-center">
                             <Button href="tel:3033244895" className="w-full">

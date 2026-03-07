@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
@@ -6,6 +6,7 @@ import { Award } from 'lucide-react'
 import susannahImg from '../assets/images/susannah.avif'
 import SisterSchools from '../components/SisterSchools.jsx'
 import SectionLabel from '../components/ui/SectionLabel.jsx'
+import DiamondDivider from '../components/ui/DiamondDivider.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,49 +39,63 @@ Dayna loves dancing on 8-hand teams and has a passion for performing. She is wor
 
 export default function About() {
     useMeta({
-        title: 'About Us | Avoca Irish Dance Academy',
-        description: 'Meet Susannah Ruehlen (ADCRG), Amanda Lebeda, Dayna Spence — the passionate instructors of Avoca Irish Dance Academy in Longmont, Colorado.',
-        path: '/about',
+        title: 'Instructors | Avoca Irish Dance Academy',
+        description: 'Meet Susannah Ruehlen (ADCRG), Amanda Lebeda, and Dayna Spence — the passionate instructors behind Avoca Irish Dance Academy in Longmont, Colorado.',
+        path: '/about/instructors',
     })
 
-    const cardsRef = useRef(null)
+    const pageRef = useRef(null)
 
-    useEffect(() => {
-        gsap.set('.instructor-card', { opacity: 1, y: 0 })
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
-            gsap.fromTo('.instructor-card',
-                { opacity: 0, y: 50 },
+            gsap.fromTo('.loc-elem',
+                { opacity: 0, y: 30 },
                 {
                     opacity: 1, y: 0,
                     duration: 0.8,
-                    stagger: 0.2,
+                    stagger: 0.1,
                     ease: 'power3.out',
-                    scrollTrigger: { trigger: cardsRef.current, start: 'top 75%' },
+                    delay: 0.2
                 }
             )
-        }, cardsRef)
+
+            if (pageRef.current) {
+                gsap.fromTo('.instructor-card',
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.8,
+                        stagger: 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: { trigger: pageRef.current, start: 'top 75%' },
+                    }
+                )
+            }
+        }, pageRef)
         return () => ctx.revert()
     }, [])
 
     return (
-        <div className="bg-ink min-h-screen">
+        <div ref={pageRef} className="bg-ink min-h-screen">
             {/* Banner */}
-            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+            <header className="section-header-banner">
                 {/* Subtle radial glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
 
-                <div className="relative z-10">
-                    <SectionLabel className="mb-6">About Us</SectionLabel>
-                    <h1 className="font-display text-5xl md:text-6xl text-gold mb-6 font-light">Our Instructors</h1>
-                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <SectionLabel className="loc-elem mb-4">Instructors</SectionLabel>
+                    <h1 className="loc-elem font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight">
+                        Our <span className="italic text-gold-light">Instructors</span>
+                    </h1>
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
+                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
                         Meet the passionate teachers behind Avoca Irish Dance Academy.
                     </p>
                 </div>
-            </div>
+            </header>
 
-            {/* Instructors */}
             <section
-                ref={cardsRef}
                 className="section-padding max-w-4xl mx-auto"
                 aria-label="Instructor profiles"
             >

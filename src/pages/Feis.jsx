@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useMeta } from '../hooks/useMeta.js'
@@ -6,6 +6,7 @@ import { Calendar, MapPin, Trophy } from 'lucide-react'
 import feisBanner from '../assets/images/feis-banner.png'
 import SectionLabel from '../components/ui/SectionLabel.jsx'
 import Button from '../components/ui/Button.jsx'
+import DiamondDivider from '../components/ui/DiamondDivider.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,42 +39,56 @@ export default function Feis() {
         path: '/feis',
     })
 
-    const contentRef = useRef(null)
+    const pageRef = useRef(null)
 
-    useEffect(() => {
-        gsap.set('.feis-block', { opacity: 1, y: 0 })
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
-            gsap.fromTo('.feis-block',
-                { opacity: 0, y: 40 },
+            gsap.fromTo('.loc-elem',
+                { opacity: 0, y: 30 },
                 {
                     opacity: 1, y: 0,
-                    duration: 0.7,
-                    stagger: 0.12,
+                    duration: 0.8,
+                    stagger: 0.1,
                     ease: 'power3.out',
-                    scrollTrigger: { trigger: contentRef.current, start: 'top 75%' },
+                    delay: 0.2
                 }
             )
-        }, contentRef)
+
+            if (pageRef.current) {
+                gsap.fromTo('.feis-block',
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.7,
+                        stagger: 0.12,
+                        ease: 'power3.out',
+                        scrollTrigger: { trigger: pageRef.current, start: 'top 75%' },
+                    }
+                )
+            }
+        }, pageRef)
         return () => ctx.revert()
     }, [])
 
     return (
-        <div className="bg-ink min-h-screen">
+        <div ref={pageRef} className="bg-ink min-h-screen">
             {/* Banner */}
-            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+            <header className="section-header-banner">
                 {/* Subtle radial glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
 
-                <div className="relative z-10 feis-block">
-                    <SectionLabel className="mb-6">Competition</SectionLabel>
-                    <h1 className="font-display text-5xl md:text-6xl text-gold mb-6 font-light">Avoca Feis</h1>
-                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                <div className="relative z-10">
+                    <SectionLabel className="loc-elem mb-6">Competition</SectionLabel>
+                    <h1 className="loc-elem font-display text-5xl md:text-6xl text-gold mb-6 font-light leading-tight">Avoca Feis</h1>
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
+                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
                         Halloween & Autumn Leaf Championship — October 2025
                     </p>
                 </div>
-            </div>
+            </header>
 
-            <div ref={contentRef} className="section-padding max-w-6xl mx-auto relative">
+            <div className="section-padding max-w-6xl mx-auto relative">
                 {/* Ambient background glow */}
                 <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-gold/5 blur-[120px] pointer-events-none" />
 
@@ -89,7 +104,7 @@ export default function Feis() {
                         </h2>
                     </header>
 
-                    <div className="section-divider my-10 max-w-2xl mx-auto" />
+                    <div className="section-divider my-8 max-w-2xl mx-auto" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-4">
                         {/* Location */}
@@ -159,7 +174,7 @@ export default function Feis() {
                         </p>
                     </article>
 
-                    <div className="section-divider my-10 max-w-2xl mx-auto" />
+                    <div className="section-divider my-8 max-w-2xl mx-auto" />
 
                     {/* Specials grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

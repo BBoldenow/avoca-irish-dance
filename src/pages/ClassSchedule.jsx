@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState, useMemo } from 'react'
 import SectionLabel from '../components/ui/SectionLabel.jsx'
+import DiamondDivider from '../components/ui/DiamondDivider.jsx'
 import gsap from 'gsap'
 import { Clock, MapPin, CalendarDays, List } from 'lucide-react'
 import { useMeta } from '../hooks/useMeta.js'
@@ -71,6 +72,7 @@ export default function ClassSchedule() {
     }
 
     useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
             gsap.fromTo('.loc-elem', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2 })
         }, sectionRef)
@@ -167,20 +169,21 @@ export default function ClassSchedule() {
 
     return (
         <div ref={sectionRef} className="pt-20 bg-ink min-h-screen">
-            <div className="section-padding-min border-b border-gold/10 relative z-10 text-center relative overflow-hidden bg-ink-soft">
+            <header className="section-header-banner">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
-                <div className="max-w-6xl mx-auto text-center relative z-10">
+                <div className="max-w-4xl mx-auto text-center relative z-10">
                     <SectionLabel className="loc-elem mb-4">
                         Live Calendar
                     </SectionLabel>
-                    <h1 className="loc-elem font-display text-5xl md:text-6xl lg:text-7xl font-light text-cream mb-6">
+                    <h1 className="loc-elem font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight">
                         Class <span className="italic text-gold-light">Schedule</span>
                     </h1>
-                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed mb-6">
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
+                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
                         Check out our weekly class schedule below. Click on any class for more details and to add it to your personal calendar.
                     </p>
                 </div>
-            </div>
+            </header>
 
             <div className="section-padding">
                 <div className="max-w-6xl mx-auto">

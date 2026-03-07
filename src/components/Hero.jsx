@@ -80,7 +80,7 @@ export default function Hero() {
                 <img
                     src={heroBg}
                     alt=""
-                    fetchpriority="high"
+                    fetchPriority="high"
                     decoding="async"
                     className="hero-bg-layer w-full h-[115%] -top-[7.5%] relative object-cover object-center"
                     style={{ opacity: 0.45 }}

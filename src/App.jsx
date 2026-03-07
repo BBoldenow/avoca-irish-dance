@@ -6,6 +6,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 
 // Lazy-load all pages except Home
+const CoreValues = lazy(() => import('./pages/CoreValues.jsx'))
 const About = lazy(() => import('./pages/About.jsx'))
 const Rates = lazy(() => import('./pages/Rates.jsx'))
 const ClassSchedule = lazy(() => import('./pages/ClassSchedule.jsx'))
@@ -49,7 +50,9 @@ export default function App() {
                 <Suspense fallback={<PageFallback />}>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/about" element={<About />} />
+                        <Route path="/about" element={<CoreValues />} />
+                        <Route path="/about/core-values" element={<CoreValues />} />
+                        <Route path="/about/instructors" element={<About />} />
                         <Route path="/rates" element={<Rates />} />
                         <Route path="/class-schedule" element={<ClassSchedule />} />
                         <Route path="/registration" element={<Registration />} />

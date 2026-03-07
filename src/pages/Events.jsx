@@ -19,6 +19,7 @@ export default function Events() {
     })
 
     useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
             gsap.fromTo('.loc-elem', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2 })
         }, sectionRef)
@@ -28,22 +29,21 @@ export default function Events() {
     return (
         <div ref={sectionRef} className="bg-ink min-h-screen">
             {/* Header */}
-            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+            <header className="section-header-banner">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
-                <div className="relative z-10 max-w-6xl mx-auto">
-                    <div className="text-center loc-elem">
-                        <SectionLabel className="mb-4">
-                            What's On
-                        </SectionLabel>
-                        <h1 className="font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight">
-                            Events &amp; <span className="italic text-gold-light">Competitions</span>
-                        </h1>
-                        <p className="font-body text-cream/55 text-sm md:text-base leading-relaxed font-light mx-auto max-w-xl">
-                            Irish dance is meant to be shared! From local <em>Feiseanna</em> (competitions) to St. Patrick's Day shows, our dancers love to perform and compete all year round.
-                        </p>
-                    </div>
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <SectionLabel className="loc-elem mb-4">
+                        What's On
+                    </SectionLabel>
+                    <h1 className="loc-elem font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight uppercase tracking-tight">
+                        Events &amp; <span className="italic text-gold-light lowercase">Competitions</span>
+                    </h1>
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
+                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                        Irish dance is meant to be shared! From local <em>Feiseanna</em> (competitions) to St. Patrick's Day shows, our dancers love to perform and compete all year round.
+                    </p>
                 </div>
-            </div>
+            </header>
 
             {/* Events list */}
             <div className="section-padding min-h-[50vh]">

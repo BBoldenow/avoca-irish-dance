@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -6,6 +6,7 @@ import { useMeta } from '../hooks/useMeta.js'
 import { DollarSign, ChevronRight } from 'lucide-react'
 import SectionLabel from '../components/ui/SectionLabel.jsx'
 import Button from '../components/ui/Button.jsx'
+import DiamondDivider from '../components/ui/DiamondDivider.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,41 +23,57 @@ export default function Rates() {
         path: '/rates',
     })
 
-    const contentRef = useRef(null)
+    const pageRef = useRef(null)
 
-    useEffect(() => {
-        gsap.set('.rate-block', { opacity: 1, y: 0 })
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
-            gsap.fromTo('.rate-block',
-                { opacity: 0, y: 40 },
+            gsap.fromTo('.loc-elem',
+                { opacity: 0, y: 30 },
                 {
                     opacity: 1, y: 0,
-                    duration: 0.7,
-                    stagger: 0.15,
+                    duration: 0.8,
+                    stagger: 0.1,
                     ease: 'power3.out',
-                    scrollTrigger: { trigger: contentRef.current, start: 'top 75%' },
+                    delay: 0.2
                 }
             )
-        }, contentRef)
+
+            if (pageRef.current) {
+                gsap.fromTo('.rate-block',
+                    { opacity: 0, y: 40 },
+                    {
+                        opacity: 1, y: 0,
+                        duration: 0.7,
+                        stagger: 0.15,
+                        ease: 'power3.out',
+                        scrollTrigger: { trigger: pageRef.current, start: 'top 75%' },
+                    }
+                )
+            }
+        }, pageRef)
         return () => ctx.revert()
     }, [])
 
     return (
-        <div className="bg-ink min-h-screen">
-            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+        <div ref={pageRef} className="bg-ink min-h-screen">
+            <header className="section-header-banner">
                 {/* Subtle radial glow */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
 
-                <div className="relative z-10 rate-block">
-                    <SectionLabel className="mb-6">Investment</SectionLabel>
-                    <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-gold mb-6 font-light">Rates & Tuition</h1>
-                    <p className="font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
-                        Competitive pricing for a world-class Irish dance experience.
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <SectionLabel className="loc-elem mb-4">Investment</SectionLabel>
+                    <h1 className="loc-elem font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight">
+                        Academy <span className="italic text-gold-light">Rates</span>
+                    </h1>
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
+                    <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
+                        Transparent pricing for all levels of Irish dance instruction.
                     </p>
                 </div>
-            </div>
+            </header>
 
-            <div ref={contentRef} className="section-padding max-w-4xl mx-auto space-y-12 relative">
+            <div className="section-padding max-w-4xl mx-auto space-y-12 relative">
                 {/* Ambient background glow */}
                 <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3/4 h-[500px] bg-gold/5 blur-[120px] pointer-events-none" />
 
@@ -115,7 +132,7 @@ export default function Rates() {
                         </div>
                     </article>
 
-                    <div className="section-divider my-12 max-w-2xl mx-auto" />
+                    <div className="section-divider my-8 max-w-2xl mx-auto" />
 
                     {/* CTA */}
                     <div className="rate-block text-center pt-6 pb-12">

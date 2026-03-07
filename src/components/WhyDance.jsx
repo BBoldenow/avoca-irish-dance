@@ -47,7 +47,7 @@ export default function WhyDance() {
             className="section-padding max-w-7xl mx-auto"
             aria-labelledby="why-heading"
         >
-            <div className="text-center mb-16 md:mb-24">
+            <div className="text-center mb-12 md:mb-16">
                 <SectionLabel className="mb-4">Why Us</SectionLabel>
                 <h2
                     id="why-heading"

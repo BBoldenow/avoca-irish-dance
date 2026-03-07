@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import SectionLabel from '../components/ui/SectionLabel.jsx'
+import DiamondDivider from '../components/ui/DiamondDivider.jsx'
 import { useMeta } from '../hooks/useMeta.js'
 import { useGoogleDriveFolder } from '../hooks/useGoogleDriveFolder.js'
 
@@ -24,6 +25,7 @@ export default function Gallery() {
     const { files, loading, error } = useGoogleDriveFolder(folderId)
 
     useLayoutEffect(() => {
+        window.scrollTo(0, 0)
         const ctx = gsap.context(() => {
             gsap.fromTo('.loc-elem', { opacity: 0, y: 30 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: 'power3.out', delay: 0.2 })
         }, sectionRef)
@@ -33,17 +35,20 @@ export default function Gallery() {
     return (
         <div ref={sectionRef} className="bg-ink min-h-screen">
             {/* Header */}
-            <div className="bg-ink-soft border-b border-gold/10 pt-36 pb-20 px-6 text-center relative overflow-hidden">
+            <header className="section-header-banner">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-gold/5 blur-[100px] pointer-events-none" />
 
-                <div className="relative z-10">
-                    <SectionLabel className="loc-elem mb-6">Moments</SectionLabel>
-                    <h1 className="loc-elem font-display text-5xl md:text-6xl text-gold mb-6 font-light">Gallery</h1>
+                <div className="max-w-4xl mx-auto text-center relative z-10">
+                    <SectionLabel className="loc-elem mb-4">Moments</SectionLabel>
+                    <h1 className="loc-elem font-display text-4xl md:text-5xl lg:text-7xl font-light text-cream mb-6 leading-tight">
+                        Visual <span className="italic text-gold-light">Gallery</span>
+                    </h1>
+                    <DiamondDivider className="loc-elem mt-8 mb-8" />
                     <p className="loc-elem font-body text-cream/60 max-w-xl mx-auto font-light leading-relaxed">
                         A glimpse into our dancers, competitions, and performances.
                     </p>
                 </div>
-            </div>
+            </header>
 
             {/* Masonry-style grid or Loading State */}
             <div className="section-padding min-h-[50vh]">
@@ -142,7 +147,7 @@ export default function Gallery() {
                 )}
 
                 {/* Disclaimer */}
-                <div className="max-w-6xl mx-auto mt-20 pt-10 border-t border-gold/10 text-center relative loc-elem">
+                <div className="max-w-6xl mx-auto mt-12 pt-8 border-t border-gold/10 text-center relative loc-elem">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
                     <p className="font-body text-cream/40 text-xs tracking-wide">
                         Contact us to inquire about studio photography.
